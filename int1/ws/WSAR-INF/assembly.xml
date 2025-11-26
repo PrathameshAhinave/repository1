@@ -25,6 +25,7 @@
                 <cc:log id="Log">
                     <cc:log-message>
                         <cc:message-content/>
+                        <cc:text>change2</cc:text>
                     </cc:log-message>
                 </cc:log>
             </cc:steps>
