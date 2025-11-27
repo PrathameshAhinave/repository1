@@ -19,7 +19,7 @@
                 <cc:write id="Write">
                     <cc:message>
                         <cc:message-content/>
-                        <cc:text>hello team</cc:text>
+                        <cc:text>hello team, HM change</cc:text>
                     </cc:message>
                 </cc:write>
                 <cc:log id="Log">
