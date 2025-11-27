@@ -25,7 +25,7 @@
                 <cc:log id="Log">
                     <cc:log-message>
                         <cc:message-content/>
-                        <cc:text>change2</cc:text>
+                        <cc:text>change2 Harshitha Change</cc:text>
                     </cc:log-message>
                 </cc:log>
                 <cc:store id="Store"/>
