@@ -1,0 +1,9 @@
+.metadata/
+.settings/
+.history/
+Servers/
+bin/
+*.classpath
+*.project
+*.log
+*.tmp
