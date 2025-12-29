@@ -25,9 +25,14 @@
                 <cc:log id="Log">
                     <cc:log-message>
                         <cc:message-content/>
-                        <cc:text>change2</cc:text>
                     </cc:log-message>
                 </cc:log>
+                <cc:store id="Store"/>
+                <cc:write id="Write0">
+                    <cc:message>
+                        <cc:message-content/>
+                    </cc:message>
+                </cc:write>
             </cc:steps>
         </cc:async-mediation>
 	</cc:assembly>
