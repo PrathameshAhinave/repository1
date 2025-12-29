@@ -25,10 +25,17 @@
                 <cc:log id="Log">
                     <cc:log-message>
                         <cc:message-content/>
-                        <cc:text>change2</cc:text>
                     </cc:log-message>
                 </cc:log>
                 <cc:store id="Store"/>
+<<<<<<< HEAD
+=======
+                <cc:write id="Write0">
+                    <cc:message>
+                        <cc:message-content/>
+                    </cc:message>
+                </cc:write>
+>>>>>>> branch 'master' of https://github.com/PrathameshAhinave/repository1
             </cc:steps>
         </cc:async-mediation>
 	</cc:assembly>
