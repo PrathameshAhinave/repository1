@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+     xmlns="http://www.springframework.org/schema/beans"
+     xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:cc="http://www.capeclear.com/assembly/10"
+     xmlns:cloud="urn:com.workday/esb/cloud/10.0"
+     xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+     xmlns:pi="urn:com.workday/picof"
+     xmlns:wd="urn:com.workday/bsvc"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 
+	<cc:assembly id="WorkdayAssembly" version="2025.21">
+        <cc:workday-in id="StartHere" routes-to="AsyncMediation0">
+            <cc:integration-system name="INT_POC_email_customer_invoice">
+        <cloud:report-service name="INT_POC_email_customer_invoice_RS">
+          <cloud:report-alias description="CRI Custom Invoice Print" name="CRICustom_Invoice_Print">
+            <cloud:report-reference description="CRI Custom Invoice Print" type="WID">1c9ec18e215b1001630a55fc4e770000</cloud:report-reference>
+          </cloud:report-alias>
+        </cloud:report-service>
+      </cc:integration-system>
+        </cc:workday-in>
+        <cc:async-mediation id="AsyncMediation" routes-to="mailto">
+            <cc:steps>
+                <cc:write id="Write" output="message">
+                    <cc:message>
+                        <cc:text>Attached is a copy of your invoice to be processed for payment. Should you have any &#xD;
+questions or issues regarding the attached invoice, please contact Accounts Receivable at&#xD;
+invoiceinquiry@vertexinc.com or (800) 355-3500 (Choose option6,then option2).&#xD;
+&#xD;
+Thank you, we truly appreciate your time and business.&#xD;
+&#xD;
+Vertex,Inc.&#xD;
+Where Taxation Meets Innovation&#xD;
+2301 Renaissance Boulevard&#xD;
+King Of Prussia, PA&#xD;
+www.vertexinc.com </cc:text>
+                        <cc:line-separator/>
+                        <cc:static-file input-file="Cantaloupe Inc. 0017637 2023-05-23.pdf"/>
+                    </cc:message>
+                </cc:write>
+                <cc:copy id="Copy" output="attachment" output-attachment-index="0" input="message"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['myPropName2']='Christian.Erewele@vertexinc.com';</cc:expression>
+                    <cc:expression>props['fileName'] = &quot;Cantaloupe Inc. 0017637 2023-05-23.pdf&quot;</cc:expression>
+                </cc:eval>
+                <cc:set-headers id="SetHeaders" output="attachment" output-attachment-index="0"><cc:remove-headers/><cc:add-headers>
+    <cc:add-header name="Content-Disposition" value="attachment; filename=@{props['fileName']}"/>
+</cc:add-headers></cc:set-headers>
+                <cc:xslt-plus execute-when="false" id="XsltPlus" url="content.xsl"/>
+                <cc:write id="Write0">
+                    <cc:message>
+                        <cc:text>        &lt;html>&#xD;
+            &lt;head>&#xD;
+                &lt;style type=&quot;text/css&quot;>&#xD;
+                    body {&#xD;
+                        font-family: Arial, sans-serif;&#xD;
+                        font-size: 14px;&#xD;
+                        color: #333333;&#xD;
+                        line-height: 1.6;&#xD;
+                        margin: 20px;&#xD;
+                    }&#xD;
+                    .signature {&#xD;
+                        margin-top: 25px;&#xD;
+                    }&#xD;
+                    .company {&#xD;
+                        font-weight: bold;&#xD;
+                        color: #004080;&#xD;
+                    }&#xD;
+                    a {&#xD;
+                        color: #004080;&#xD;
+                        text-decoration: none;&#xD;
+                    }&#xD;
+                &lt;/style>&#xD;
+            &lt;/head>&#xD;
+            &lt;body>&#xD;
+                &lt;p>Attached is a copy of your invoice to be processed for payment. Should you have any &#xD;
+                questions or issues regarding the attached invoice, please contact Accounts Receivable at&#xD;
+                &lt;a href=&quot;mailto:invoiceinquiry@vertexinc.com&quot;>invoiceinquiry@vertexinc.com&lt;/a> or &#xD;
+                (800) 355-3500 (Choose option 6, then option 2).&lt;/p>&#xD;
+&#xD;
+                &lt;p>Thank you, we truly appreciate your time and business.&lt;/p>&#xD;
+&#xD;
+                &lt;div class=&quot;signature&quot;>&#xD;
+                    &lt;p class=&quot;company&quot;>Vertex, Inc.&lt;/p>&#xD;
+                    &lt;p>Where Taxation Meets Innovation&lt;/p>&#xD;
+                    &lt;p>2301 Renaissance Boulevard&lt;br/>&#xD;
+                    King Of Prussia, PA&lt;/p>&#xD;
+                    &lt;p>&lt;a href=&quot;http://www.vertexinc.com&quot; target=&quot;_blank&quot;>www.vertexinc.com&lt;/a>&lt;/p>&#xD;
+                &lt;/div>&#xD;
+            &lt;/body>&#xD;
+        &lt;/html>&#xD;
+</cc:text>
+                    </cc:message>
+                </cc:write>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:email-out id="mailto" endpoint="mailto:@{props['myPropName2']}" from="vertexinvoicing@vertexinc.com" host="smtp.office365.com" password=">fhkjrXW-o4R" port="587" starttls="true" subject="Test invoice" user="Workday.InvoicingSvc@vertexinc.com"><cc:oauth-config/></cc:email-out>
+        <cc:async-mediation id="AsyncMediation0" routes-to="GettingCustomreport">
+            <cc:steps>
+                <cc:eval id="Eval"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="GettingCustomreport" store-message="none" endpoint="vm://INT_POC_email_customer_invoice/SubRoutine"/>
+        <cc:local-in id="SubRoutine" routes-to="AsyncMediation"/>
+        <cc:async-mediation id="AsyncMediation1" routes-to="WorkdayOutRest" handle-downstream-errors="true">
+            <cc:steps/>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="AsyncMediation2" routes-to="Splitter" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text></cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                        <cc:text>------------------------</cc:text>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage0"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="AsyncMediation3" handle-downstream-errors="true">
+            <cc:steps/>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage1"/>
+        </cc:async-mediation>
+        <cc:splitter id="Splitter">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation3"/>
+            <cc:xml-stream-splitter xpath="wd:report_Data/wd:Report_Entr"/>
+        </cc:splitter>
+        <cc:workday-out-rest id="WorkdayOutRest" routes-response-to="AsyncMediation2" extra-path="@{intsys.reportService.getExtrapath('CRICustom_Invoice_Print')}"/>
+        <cc:local-out id="PutIntegrationMessage" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
+        <cc:local-out id="PutIntegrationMessage0" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
+        <cc:local-out id="PutIntegrationMessage1" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
+	</cc:assembly>
+
+</beans>
