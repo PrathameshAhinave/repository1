@@ -12,7 +12,7 @@
  
 	<cc:assembly id="WorkdayAssembly" version="2025.21">
         <cc:workday-in id="StartHere" routes-to="AsyncMediation0">
-            <cc:integration-system name="INT_POC_email_customer_invoice">
+            <cc:integration-system name="INT_POC_git_test">
         <cloud:report-service name="INT_POC_email_customer_invoice_RS">
           <cloud:report-alias description="CRI Custom Invoice Print" name="CRICustom_Invoice_Print">
             <cloud:report-reference description="CRI Custom Invoice Print" type="WID">1c9ec18e215b1001630a55fc4e770000</cloud:report-reference>
