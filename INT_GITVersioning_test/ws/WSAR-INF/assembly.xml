@@ -12,7 +12,7 @@
  
 	<cc:assembly id="WorkdayAssembly" version="2025.21">
         <cc:workday-in id="StartHere" routes-to="AsyncMediation0">
-            <cc:integration-system name="INT_POC_git_test">
+            <cc:integration-system name="INT_GITversioning_test">
         <cloud:report-service name="INT_POC_email_customer_invoice_RS">
           <cloud:report-alias description="CRI Custom Invoice Print" name="CRICustom_Invoice_Print">
             <cloud:report-reference description="CRI Custom Invoice Print" type="WID">1c9ec18e215b1001630a55fc4e770000</cloud:report-reference>
@@ -101,7 +101,7 @@ www.vertexinc.com </cc:text>
                 <cc:eval id="Eval"/>
             </cc:steps>
         </cc:async-mediation>
-        <cc:local-out id="GettingCustomreport" store-message="none" endpoint="vm://INT_POC_email_customer_invoice/SubRoutine"/>
+        <cc:local-out id="GettingCustomreport" store-message="none" endpoint="vm://INT_GITVersioning_test/SubRoutine"/>
         <cc:local-in id="SubRoutine" routes-to="AsyncMediation"/>
         <cc:async-mediation id="AsyncMediation1" routes-to="WorkdayOutRest" handle-downstream-errors="true">
             <cc:steps/>
