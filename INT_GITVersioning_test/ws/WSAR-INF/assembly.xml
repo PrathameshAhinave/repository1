@@ -115,7 +115,6 @@ www.vertexinc.com </cc:text>
         <cc:local-in id="SubRoutine" routes-to="AsyncMediation"/>
         <cc:async-mediation id="AsyncMediation1" routes-to="WorkdayOutRest" handle-downstream-errors="true">
             <cc:steps>
-                <cc:copy id="Copy"/>
             </cc:steps>
             <cc:send-error id="SendError" routes-to="PutIntegrationMessage"/>
         </cc:async-mediation>
