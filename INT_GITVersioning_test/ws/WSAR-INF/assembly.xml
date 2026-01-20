@@ -114,6 +114,11 @@ www.vertexinc.com </cc:text>
                         <cc:message-content/>
                     </cc:log-message>
                 </cc:log>
+                <cc:write id="Write0">
+                    <cc:message>
+                        <cc:message-content/>
+                    </cc:message>
+                </cc:write>
             </cc:steps>
         </cc:async-mediation>
         <cc:local-out id="GettingCustomreport" store-message="none" endpoint="vm://INT_GITVersioning_test/SubRoutine"/>
