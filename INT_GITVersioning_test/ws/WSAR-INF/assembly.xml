@@ -93,6 +93,11 @@ www.vertexinc.com </cc:text>
 </cc:text>
                     </cc:message>
                 </cc:write>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
             </cc:steps>
         </cc:async-mediation>
         <cc:email-out id="mailto" endpoint="mailto:@{props['myPropName2']}" from="vertexinvoicing@vertexinc.com" host="smtp.office365.com" password=">fhkjrXW-o4R" port="587" starttls="true" subject="Test invoice" user="Workday.InvoicingSvc@vertexinc.com"><cc:oauth-config/></cc:email-out>
