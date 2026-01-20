@@ -92,11 +92,11 @@
     <elements href="assembly.xml#AsyncMediation0"/>
     <elements href="assembly.xml#GettingCustomreport"/>
   </swimlanes>
-  <swimlanes x="155" y="678" name="Swimlane">
+  <swimlanes x="100" y="212" name="Swimlane">
     <elements href="assembly.xml#AsyncMediation"/>
     <elements href="assembly.xml#mailto"/>
   </swimlanes>
-  <swimlanes x="40" y="292" name="Swimlane">
+  <swimlanes x="288" y="383" name="Swimlane">
     <elements href="assembly.xml#SubRoutine"/>
     <elements href="#//@swimlanes.3"/>
     <elements href="assembly.xml#WorkdayOutRest"/>
