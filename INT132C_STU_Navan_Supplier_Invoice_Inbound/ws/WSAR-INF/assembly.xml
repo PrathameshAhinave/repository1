@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+     xmlns="http://www.springframework.org/schema/beans"
+     xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:cc="http://www.capeclear.com/assembly/10"
+     xmlns:cloud="urn:com.workday/esb/cloud/10.0"
+     xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+     xmlns:pi="urn:com.workday/picof"
+     xmlns:wd="urn:com.workday.report/bsvc"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 
+	<cc:assembly id="WorkdayAssembly" version="2025.11">
+        <cc:workday-in id="StartHere" routes-to="GetEventDocuments">
+            <cc:integration-system name="INT132C_STU_Navan_Supplier_Invoice_Inbound">
+        <cloud:param name="ValidateMode">
+          <cloud:type>
+            <cloud:simple-type>boolean</cloud:simple-type>
+          </cloud:type>
+          <cloud:default>
+            <cloud:boolean>true</cloud:boolean>
+          </cloud:default>
+        </cloud:param>
+        <cloud:attribute-map-service name="INT132C_Attribute_Service">
+          <cloud:attribute name="Web Service Version">
+            <cloud:type>
+              <cloud:class-report-field description="Web Service Version" type="WID" singular="true">526a88b70875488183e1b80f52481ee8</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Document Retention">
+            <cloud:type>
+              <cloud:simple-type>number</cloud:simple-type>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Company">
+            <cloud:type>
+              <cloud:class-report-field description="Company" type="WID" singular="true">9fc0ab959ea0400fbd11ede84453af33</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Payment Terms">
+            <cloud:type>
+              <cloud:class-report-field description="Payment Terms" type="WID" singular="true">477ea27840dd100010388186a1460161</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Tax Option">
+            <cloud:type>
+              <cloud:class-report-field description="Tax Option" type="WID" singular="true">a830c4139edd100007c479c8335c004d</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Invoice Document Status">
+            <cloud:type>
+              <cloud:class-report-field description="Invoice Document Status" type="WID" singular="true">98c953d9eb74405197d14e5a8df4f481</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Spend Category">
+            <cloud:type>
+              <cloud:class-report-field description="Spend Category" type="WID" singular="true">c4b66c762f404efdac5a30de0d5b17f6</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:attribute name="Supplier">
+            <cloud:type>
+              <cloud:class-report-field description="Supplier" type="WID" singular="true">7e1f7a11fbc64868a09081efbe8e15a1</cloud:class-report-field>
+            </cloud:type>
+          </cloud:attribute>
+          <cloud:map name="Company">
+            <cloud:internal-type>
+              <cloud:class-report-field description="Company" type="WID">9fc0ab959ea0400fbd11ede84453af33</cloud:class-report-field>
+            </cloud:internal-type>
+            <cloud:external-type>
+              <cloud:simple-type>text</cloud:simple-type>
+            </cloud:external-type>
+          </cloud:map>
+        </cloud:attribute-map-service>
+        <cloud:report-service name="INT132C_Report_Service">
+          <cloud:report-alias description="CRINT132C_Worker_List" name="CRINT132C_Worker_List">
+            <cloud:report-reference description="CRINT132C_Worker_List" type="WID">e1eb7bddac261000cc43eaae03b50000</cloud:report-reference>
+          </cloud:report-alias>
+        </cloud:report-service>
+      </cc:integration-system>
+        </cc:workday-in>
+        <cc:async-mediation id="AsyncMediation" routes-to="Route0">
+            <cc:steps>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['p.documentCount'] = da.size()</cc:expression>
+                    <cc:expression>props['p.successful.records.count'] = 0</cc:expression>
+                    <cc:expression>props['p.error.records.count'] = 0</cc:expression>
+                    <cc:expression>props['p.error.log'] = new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['p.success.log'] = new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['p.Log.filename'] = 'INT132C_Error_and_Success_Log.html'</cc:expression>
+                    <cc:expression>props['WWS_Version'] = intsys.getAttribute('Web Service Version')</cc:expression>
+                    <cc:expression>props['p.document.retention'] = intsys.getAttribute('Document Retention') == '' ? 180 : intsys.getAttribute('Document Retention')</cc:expression>
+                    <cc:expression>props['p.document.retention.use'] =  props['p.document.retention'] == empty ? 'P180D' :  'P' # props['p.document.retention']  # 'D' ;</cc:expression>
+                    <cc:expression>props['pTotalRecordCount'] = 0</cc:expression>
+                    <cc:expression>props['p.error.message'] =  new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['pInvoice-Date'] = util.currentDateAsString().toString().replaceAll('Z', '')</cc:expression>
+                    <cc:expression>props['pPayment_Terms_ID'] = intsys.getAttributeReferenceData('Payment Terms', 'Payment_Terms_ID')</cc:expression>
+                    <cc:expression>props['pInvoice_Status_ID'] = intsys.getAttributeReferenceData('Invoice Document Status', 'Document_Status_ID')</cc:expression>
+                    <cc:expression>props['pSupplier_ID'] = intsys.getAttributeReferenceData('Supplier', 'Supplier_ID')</cc:expression>
+                    <cc:expression>props['pSpend_Category_Reference_ID'] = intsys.getAttributeReferenceData('Spend Category', 'Spend_Category_ID')</cc:expression>
+                    <cc:expression>props['pTax_Option_ID'] = intsys.getAttributeReferenceData('Tax Option', 'Tax_Option_ID')</cc:expression>
+                    <cc:expression>props['pCompany'] = intsys.getAttributeReferenceData('Company', 'Company_Reference_ID')</cc:expression>
+                    <cc:expression>props['collate'] = true</cc:expression>
+                    <cc:expression>props['batch'] = false</cc:expression>
+                    <cc:expression>//props['p.total.records.count'] = 0</cc:expression>
+                    <cc:expression>props['pInvoiceLinedata'] = new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['pConsInvoiceError'] = new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['pRecordError'] = new java.lang.StringBuffer();</cc:expression>
+                    <cc:expression>props['pValidateMode'] = lp.getSimpleData('ValidateMode')</cc:expression>
+                    <cc:expression>props['p.hashmap'] = new java.util.HashMap()</cc:expression>
+                </cc:eval>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:line-separator/>
+                        <cc:text>&#xD;
+&#xD;
+************************************Int Values********************************************&#xD;
+&#xD;
+props['p.documentCount']: @{props['p.documentCount']}&#xD;
+props['WWS_Version']: @{props['WWS_Version']}&#xD;
+props['pInvoice-Date']: @{props['pInvoice-Date']}&#xD;
+props['pPayment_Terms_ID']:@{props['pPayment_Terms_ID']}&#xD;
+props['pTax_Option_ID']:@{props['pTax_Option_ID']}&#xD;
+props['pInvoice_Status_ID']:@{props['pInvoice_Status_ID']}&#xD;
+props['pSpend_Category_Reference_ID']:@{props['pSpend_Category_Reference_ID']}&#xD;
+props['pSupplier_ID']: @{props['pSupplier_ID']}&#xD;
+props['pValidateMode']:@{props['pValidateMode']}&#xD;
+&#xD;
+&#xD;
+&#xD;
+</cc:text>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval00">
+                    <cc:expression>props['error'] = 0</cc:expression>
+                    <cc:expression>props['success'] = 0</cc:expression></cc:eval>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage02"/>
+        </cc:async-mediation>
+        <cc:local-out id="GetEventDocuments" routes-response-to="AsyncMediation" endpoint="vm://wcc/GetEventDocuments">
+            <cc:set name="ie.event.wid" value="lp.isSet() ? lp.getIntegrationEventWID() : null"/>
+        </cc:local-out>
+        <cc:route id="Route0">
+            <cc:mvel-strategy>
+                <cc:choose-route expression="props['p.documentCount'] == 0" route="NoFile"/>
+                <cc:choose-route expression="true" route="FileExists"/>
+            </cc:mvel-strategy>
+            <cc:sub-route name="NoFile" routes-to="PutIntegrationMessage"/>
+            <cc:sub-route name="FileExists" routes-to="GetEmpData"/>
+        </cc:route>
+        <cc:local-out id="PutIntegrationMessage" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'CRITICAL'"/>
+            <cc:set name="is.message.summary" value="'No file in SFTP to process. Terminating execution.'"/>
+        </cc:local-out>
+        <cc:local-out id="GetEmpData" store-message="none" routes-response-to="ProcessFileInValidationMode" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/GetEmpDataIn"/>
+        <cc:local-in id="InProcessFile" routes-to="Route"/>
+        <cc:route id="Route">
+            <cc:doc-iterator variable-name="wd.retrieve.variable"/>
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation7"/>
+        </cc:route>
+        <cc:async-mediation id="AsyncMediation7" routes-to="PutIntegrationMessage1">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['pInputFileName'] = vars['wd.retrieve.variable'].fileName</cc:expression>
+                </cc:eval>
+                <cc:store id="Store" output="variable" output-variable="v.input.file" input="variable" input-variable="wd.retrieve.variable" createDocumentReference="false" expiresIn="@{props['p.document.retention.use']}" title="@{props['pInputFileName']}"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage1" routes-response-to="AsyncMediation0" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'INFO'"/>
+            <cc:set name="is.message.summary" value="'Input File Saved and tagged Deliverable Successfully'"/>
+            <cc:set name="is.document.variable.name" value="'v.input.file'"/>
+            <cc:set name="is.document.deliverable" value="'true'"/>
+            <cc:set name="is.document.file.name" value="props['pInputFileName']"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation0" routes-to="CallGetEmpData" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:validate-exp id="ValidateExp">
+                    <cc:expression failure-message="No data found in input file.">vars['wd.retrieve.variable'].length != 0</cc:expression>
+                </cc:validate-exp>
+                <cc:csv-to-xml id="CsvToXml" output="variable" output-variable="v.csvtoxml.file" input="variable" input-variable="wd.retrieve.variable" colNames="ID,SOURCE_ID,ACTIVITY_TYPE,ACTIVITY_DESCRIPTION,POSTED_DATE,AUTHORIZATION_DATE,MANUALLY_ADDED_DATE,REQUESTED_AMOUNT,POSTED_AMOUNT,POSTED_CURRENCY,FEE,ORIGINAL_AMOUNT,ORIGINAL_CURRENCY,CARDHOLDER,CARDHOLDER_EMPLOYEE_ID,CARDHOLDER_EMAIL,CARDHOLDER_GUEST,CARD_DESCRIPTION,CARD_NICKNAME,CARD_OWNER,APPROVER_TYPE,APPROVED_BY_EMAIL,POLICY,POLICY_CATEGORY,MERCHANT_CATEGORY,MERCHANT_NAME,MERCHANT_ADDRESS,BILLABLE_ENTITY,BILLABLE_ENTITY_AMOUNT,BILLABLE_ENTITY_CURRENCY,LEGAL_ENTITY,LEGAL_ENTITY_AMOUNT,LEGAL_ENTITY_CURRENCY,TRANSACTION_DESCRIPTION,GL_CODE_NUMBER,GL_CODE_NAME,TAXABLE_BENEFIT,PERSONAL,PERSONAL_AMOUNT,FLAGGED,FLAG_STATUS,FLAG_REASONS,REIMBURSEMENT_METHOD,AMOUNT_REPAID,AMOUNT_REJECTED,ADMIN_NOTE,TRIP_UUID,TRIP_NAME,TRIP_PURPOSE,INVITER_EMPLOYEE_ID,INVITER_EMAIL,INVITER_NAME,INVITER_DEPARTMENT,INVITER_REGION,INVITER_COST_CENTER,INVITER_SUBSIDIARY,HOTEL_NAME,BOOKING_START_DATE,BOOKING_END_DATE,FLIGHT_ORIGIN_AIRPORT,FLIGHT_DESTINATION_AIRPORT,FLIGHT_CABIN,FLIGHT_MILES,TRAIN_MILES,BOOKING_STATUS,RELATED_TRAVELERS,TRAVELERS_EMPLOYEE_ID,TRAVELERS_REGION,TRAVELERS_DEPARTMENT,TRAVELERS_COST_CENTER,TRAVELERS_SUBSIDIARY,TRANSACTION_REGION,TRANSACTION_DEPARTMENT,TRANSACTION_COST_CENTER,TRANSACTION_SUBSIDIARY,BOOKERS,NAVAN_BOOKING_IDS,ETICKETS,RECEIPT,RECEIPT_NAVAN,ERECEIPT,ERECEIPT_NAVAN,PARTICIPANTS,VAT_NUMBER,COUNTRY_OF_TRANSACTION,TAX_TOTAL,TAX_TYPE_1,NET_AMOUNT_1,TAX_AMOUNT_1,TAX_TYPE_2,NET_AMOUNT_2,TAX_AMOUNT_2,TAX_TYPE_3,NET_AMOUNT_3,TAX_AMOUNT_3,VENDOR,DISTANCE_UNIT,DISTANCE_AMOUNT,EXCHANGE_RATE,REIMBURSEMENT_EXCHANGE_RATE,ITEM_ID,ITEM_TITLE,INVOICE_DATE,INVOICE_NUMBER,NET_AMOUNT,ORIGINAL_TXN_ID,TA_INVOICE,REIMBURSEMENT_DATE,REIMBURSEMENT_AMOUNT,REIMBURSEMENT_CURRENCY,REPAID_TRANSACTION_ID,ADJUSTMENT_DESCRIPTION,HOTEL_PAYMENT_TYPE,POSTED_DATE_TIME,MODIFIED_TIMESTAMP,FX_FEE_AMOUNT,DIRECT_REIMBURSEMENT_FEE_AMOUNT,STATEMENT_ID,VCF_TRANSACTION_REFERENCE_NUMBER,EST_DOC_DATE,EST_DOC_NUMBER,EST_DOC_LINK,REBATE_TYPE,ACCRUED_REBATE_AMOUNT,APPROVAL_STATUS,LAST_APPROVER_ACTION_DATE,NAVAN_BOOKING_UUID,REPORT_TRANSACTION_ID,Custom - Bill to client,CUSTOM_FIELD_LABEL - billToClient - Bill to client,CUSTOM_FIELD_VALUE - billToClient - Bill to client,Custom - Custom Field 2,CUSTOM_FIELD_LABEL - customField2 - Custom Field 2,CUSTOM_FIELD_VALUE - customField2 - Custom Field 2,Custom - Custom Field 3,CUSTOM_FIELD_LABEL - customField3 - Custom Field 3,CUSTOM_FIELD_VALUE - customField3 - Custom Field 3,Custom - Custom Field 4,CUSTOM_FIELD_LABEL - customField4 - Custom Field 4,CUSTOM_FIELD_VALUE - customField4 - Custom Field 4,Custom - Projects,CUSTOM_FIELD_LABEL - projects - Projects,CUSTOM_FIELD_VALUE - projects - Projects,Custom - Vertex Project_Task Code,CUSTOM_FIELD_LABEL - customField1 - Vertex Project_Task Code,CUSTOM_FIELD_VALUE - customField1 - Vertex Project_Task Code" format="rfc4180" separator="," useFirstLineAsHeader="true"/>
+                <cc:copy id="Copy0" output-mimetype="text/xml" input="variable" input-variable="v.csvtoxml.file"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+CsvToXml&#xD;
+&#xD;
+</cc:text>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval">
+                    <cc:expression>props['RecordFound'] = parts[0].xpath('/root').isEmpty()</cc:expression>
+                </cc:eval>
+                <cc:validate-exp id="ValidateExp0">
+                    <cc:expression failure-message="No data found in input file.">props['RecordFound'] == false</cc:expression>
+                </cc:validate-exp>
+                <cc:store id="Store" input="variable" input-variable="v.csvtoxml.file" expiresIn="@{props['p.document.retention.use']}" title="CSVtoXMLfile.xml"/>
+                <cc:copy id="Copy" output-mimetype="text/xml" input="variable" input-variable="v.csvtoxml.file"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+*********************************XML Output******************************************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage0"/>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage0" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'WARNING'"/>
+            <cc:set name="is.message.summary" value="'Error in CSV to XML conversion : ' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:async-mediation id="Group_By_Company" routes-to="BuildWebServiceRequest" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:copy execute-when="props['RecordFound1'] == false" id="Copy" input="variable" input-variable="split.group.xml"/>
+                <cc:xslt-plus execute-when="props['RecordFound1'] == false" id="XsltPlus" url="CSV_Records_Group_by_Company.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+****************************Group By Company XML*****************************&#xD;
+&#xD;
+</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors1"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="GroupbyCompantoBase64" routes-to="Splitter">
+            <cc:steps>
+                <cc:copy id="Copy0" input="variable" input-variable="Split.GroupInitial.xml"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+---updated xml----&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:xslt-plus id="GroupbyLinesforBase64" url="GroupbylinesforBase64.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+*************************Groupbylines for Base64****************************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage05"/>
+        </cc:async-mediation>
+        <cc:splitter id="Splitter">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation1"/>
+            <cc:xml-stream-splitter xpath="root/group"/>
+        </cc:splitter>
+        <cc:async-mediation id="AsyncMediation1" routes-to="Splitter2" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:xslt-plus id="XsltPlus" url="updateRebateRow.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+***********************************Split group for Base 64***************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['base64.str'] = ''</cc:expression>
+                    <cc:expression>props['blank_empid'] =  parts[0].xpath(&quot;count(/group/row[CARDHOLDER_EMPLOYEE_ID = ''])&quot;)</cc:expression>
+                    <cc:expression>props['blank_costcenter'] =  parts[0].xpath(&quot;count(/group[row/TRAVELERS_COST_CENTER = ''])&quot;)</cc:expression>
+                    <cc:expression>props['blank_amount'] =  parts[0].xpath(&quot;count(/group[row/POSTED_AMOUNT = ''])&quot;)</cc:expression>
+                    <cc:expression>props['company'] = parts[0].xpath(&quot;/group/row/LEGAL_ENTITY[1]&quot;)</cc:expression>
+                    <cc:expression>props['todaysdate'] = util.currentDateTimeAsString().substring(0,10)</cc:expression>
+                    <cc:expression>props['incorrect_Employee'] =  parts[0].xpath(&quot;count(/group[row/WORKER_TYPE = ''])&quot;)</cc:expression>
+                </cc:eval>
+                <cc:validate-exp id="ValidateExp">
+                    <cc:expression failure-message="Blank Employee ID found for the given supplier Invoice for company @{props['company']}">props['blank_empid'] == 0</cc:expression>
+                    <cc:expression failure-message="Blank Cost Center found for the given supplier Invoice for company @{props['company']}">props['blank_costcenter'] == 0</cc:expression>
+                    <cc:expression failure-message="Blank Amount found for the given supplier Invoice for company @{props['company']}">props['blank_amount'] == 0</cc:expression>
+                    <cc:expression failure-message="Incorrect Employee ID found for the given supplier Invoice for company @{props['company']}">props['incorrect_Employee'] == 0</cc:expression>
+                    <cc:expression failure-message="Company CO_22 records will be skipped">props['company'] != 'CO_22'</cc:expression>
+                    <cc:expression failure-message="Company CO_28 records will be skipped">props['company'] != 'CO_28'</cc:expression>
+                </cc:validate-exp>
+                <cc:copy id="Copy" output="variable" output-variable="split.group.xml"/>
+                <cc:copy id="Copy0" input="variable" input-variable="Split.Group0.xml"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors0"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="BuildWebServiceRequest" routes-to="Submit_Supplier_Invoice_WS" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:xslt-plus execute-when="props['RecordFound1'] == false" id="XsltPlus" url="buildWSRequest.xsl"/>
+                <cc:set-headers id="SetHeaders"><cc:remove-headers/><cc:add-headers>
+    <cc:add-header name="X-Validate-Only" value="@{props['pValidateMode']}"/>
+</cc:add-headers></cc:set-headers>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>webservice &#xD;
+==========&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="StoreLog">
+            <cc:steps>
+                <cc:store id="Store" output-mimetype="application/zip" createDocumentReference="true" expiresIn="@{props['p.document.retention.use']}" title="CompanyGrouping.zip"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:aggregator id="Aggregator0" routes-to="StoreLog" collate-when="props['pZipCollate']" force-batch-on-last-message="false" force-batch-when="props['pZipBatch']">
+            <cc:size-batch-strategy batch-size="-1"/>
+            <cc:zip-file-collater output-mimetype="application/zip" format="zip" message-entity-name="@{props['UZipLog_FileName']}"/>
+        </cc:aggregator>
+        <cc:local-in id="ZipLogFileCreate" routes-to="AsyncMediation2"/>
+        <cc:async-mediation id="CloudLogger">
+            <cc:steps>
+                <cc:cloud-log id="CloudLog" header="INT014A1_STU_Customer_Contract_Billing_Schedule" level="props['p.severity']" message="@{props['p.error.log'].toString()}" message-details="@{props['p.error.message'].toString()}" reference-id="props['pTransaction_ID']" variable-name="Log"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="SuccessDetails">
+            <cc:steps>
+                <cc:store id="Store" output="message" input="variable" input-variable="SuccessRecords" createDocumentReference="true" expiresIn="P6M" title="Supplier_Invoice_Consolidated_Success_Log.html"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['p.error.log'] = 'WID for the Billing Schedule created: ' + props['Billing_Schedule_WID']</cc:expression>
+                    <cc:expression>props['p.successful.records.count'] = props['p.successful.records.count'] + 1</cc:expression>
+                    <cc:expression>props['p.severity'] = 'info'</cc:expression>
+                    <cc:expression>props['p.error.message'] = 'Billing Schedule created Successfully' + ' for line ' + props['p.successful.records.count']</cc:expression>
+                </cc:eval>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-in id="SuccessLog" routes-to="SuccessDetails"/>
+        <cc:local-in id="ErrorLog" routes-to="Processing_output_Error"/>
+        <cc:local-out id="PutErrorReport" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'INFO'"/>
+            <cc:set name="is.message.summary" value="'Log file Added'"/>
+            <cc:set name="is.document.variable.name" value="'LogAttach'"/>
+            <cc:set name="is.document.deliverable" value="'false'"/>
+            <cc:set name="is.document.file.name" value="props['p.Log.filename']"/>
+        </cc:local-out>
+        <cc:local-out id="PutErrorDetails" execute-when="props['p.error.records.count'] > 0" routes-response-to="PutErrorReport" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'CRITICAL'"/>
+            <cc:set name="is.message.summary" value="'Error in processing. Please review output logs'"/>
+        </cc:local-out>
+        <cc:async-mediation id="StoreHTMLLog" routes-to="PutErrorDetails">
+            <cc:steps>
+                <cc:store id="Store" output="variable" output-variable="LogAttach" input="variable" input-variable="Log" expiresIn="@{props['p.document.retention.use']}" title="@{props['p.Log.filename']}"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="PutSummary" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'INFO'"/>
+            <cc:set name="is.message.summary" value="'Summary : \nTotal Records : ' + props['p.total.records.count'] + '\nTotal Successes : ' + props['p.successful.records.count'] + '\nTotal Errors : ' + props['p.error.records.count']"/>
+        </cc:local-out>
+        <cc:route id="Route1">
+            <cc:all-strategy/>
+            <cc:sub-route name="SubRoute" routes-to="PutSummary"/>
+            <cc:sub-route name="Alternate" routes-to="StoreHTMLLog"/>
+        </cc:route>
+        <cc:local-in id="PostErrorAndSuccessLog" routes-to="Route1"/>
+        <cc:local-out id="Note-Error" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'CRITICAL'"/>
+            <cc:set name="is.message.summary" value="context.errorMessage"/>
+        </cc:local-out>
+        <cc:send-error id="global-error-handler" rethrow-error="false" routes-to="Note-Error"/>
+        <cc:local-out id="ProcessFile" store-message="none" routes-response-to="AggrZipLog" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/InProcessFile"/>
+        <cc:local-in id="GetEmpDataIn" routes-to="CatchReportError"/>
+        <cc:local-out id="CallZipLogFileCreate101" store-message="none" execute-when="props['RecordFound1'] == false" routes-response-to="AsyncMediation10" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ZipLogFileCreate">
+            <cc:set name="pZipCollate" value="true"/>
+            <cc:set name="pZipBatch" value="false"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] # '.csv'"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation10" routes-to="Group_By_Company">
+            <cc:steps>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['base64.str'] = ''</cc:expression>
+                </cc:eval>
+                <cc:eval execute-when="props['RecordFound1'] == false" id="Eval">
+                    <cc:expression>props['base64.str'] = vars['base64.var'].text</cc:expression>
+                </cc:eval>
+                <cc:log id="Log1">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+props['base64.str']: @{props['base64.str']}</cc:text>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:copy execute-when="props['RecordFound1'] == false" id="Copy"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors2"/>
+        </cc:async-mediation>
+        <cc:workday-out-rest id="WorkdayOutRest" routes-response-to="SplitReport" extra-path="@{intsys.reportService.getExtrapath('CRINT132C_Worker_List')}"/>
+        <cc:async-mediation id="InserttoHash" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:eval id="Eval"><cc:expression>props['p.report.eid'] = parts[0].xpath('wd:Report_Entry/wd:Employee_ID')</cc:expression>
+                    <cc:expression>props['workerType'] = parts[0].xpath('wd:Report_Entry/wd:Worker_Type')</cc:expression><cc:expression>props['p.hashmap'].put(props['p.report.eid'], parts[0].text)</cc:expression></cc:eval>
+                <cc:log execute-when="1 == 2" id="Log">
+                    <cc:log-message>
+                        <cc:text>props['p.report.eid'] = @{props['p.report.eid']}&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage04"/>
+        </cc:async-mediation>
+        <cc:splitter id="SplitReport">
+            <cc:sub-route name="SubRoute" routes-to="InserttoHash"/>
+            <cc:xml-stream-splitter xpath="/wd:Report_Data/wd:Report_Entry"/>
+        </cc:splitter>
+        <cc:local-out id="PutIntegrationMessage02" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error in Initail Step for Declearations' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:async-mediation id="CatchReportError" routes-to="WorkdayOutRest" handle-downstream-errors="true">
+            <cc:steps/>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage03"/>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage03" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error While Calling the Custom Report' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:local-out id="PutIntegrationMessage04" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error while creating the Hash Map' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:local-out id="PutIntegrationMessage05" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error while generating Base64 String' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:local-out id="Error_Logs" store-message="none" execute-when="props['error'] > 0" routes-response-to="Success_Logs" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ErrorLog"/>
+        <cc:async-mediation id="Processing_output_Error" routes-to="PutIntegrationMessage2" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:store id="Store" output="message" input="variable" input-variable="Failure" createDocumentReference="true" expiresIn="P6M" title="Supplier_Invoice_Consolidated_Error_Log.html"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="Success_Logs" store-message="none" execute-when="props['success']>=1" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/SuccessLog"/>
+        <cc:async-mediation id="Success_Records_SPI" handle-downstream-errors="false">
+            <cc:steps>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+***************Submit Supplier Invoice Response**************&#xD;
+&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['invoice.SINV'] = ''</cc:expression>
+                    <cc:expression>props['invoice.SINV'] = props['invoice.wid'] = parts[0].xpath('env:Envelope/env:Body/wd:Submit_Supplier_Invoice_Response/wd:Supplier_Invoice_Reference/wd:ID[@wd:type=&quot;Supplier_Invoice_Reference_ID&quot;]','wd urn:com.workday/bsvc')</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" header="Success!" level="info" message="Supplier Invoice &amp; Invoice Lines created successfully." message-details="Supplier Invoice &amp; Invoice Lines created successfully." reference-id="props['company'] + ':' + props['invoice.SINV']" variable-name="SuccessRecords"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['success'] = props['success'] + 1</cc:expression>
+                </cc:eval>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:workday-out-soap id="Submit_Supplier_Invoice_WS" execute-when="props['RecordFound1'] == false" routes-response-to="Success_Records_SPI" application="Resource_Management" version="V44.0"/>
+        <cc:async-mediation id="Errors">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while creating the Supplier Invoices &amp; Invoice Lines" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors0">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Validation Supplier Invoices &amp; Invoice Lines" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="AggrZipLog" store-message="none" routes-response-to="Error_Logs" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ZipLogFileCreate">
+            <cc:set name="pZipCollate" value="false"/>
+            <cc:set name="pZipBatch" value="true"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] # '.csv'"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation2" routes-to="Aggregator0">
+            <cc:steps>
+                <cc:store execute-when="1 == 2" id="Store" output="attachment" output-attachment-index="0" output-mimetype="application/zip" input="message" createDocumentReference="true" expiresIn="P6M" title="@{props['company']} _ @{props['todaysdate']}.csv"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors1">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while grouping the input data" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors2">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while encoding the csv file" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="CallGetEmpData" store-message="none" routes-response-to="AsyncMediation4" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/GetFileEmpDataIn">
+            <cc:set name="pZipCollate" value="true"/>
+            <cc:set name="pZipBatch" value="false"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] # '.csv'"/>
+        </cc:local-out>
+        <cc:local-in id="GetFileEmpDataIn" routes-to="Splitter0"/>
+        <cc:splitter id="Splitter0">
+            <cc:sub-route name="SubRoute" routes-to="AddEmployeeType"/>
+            <cc:xml-stream-splitter xpath="/root/row"/>
+        </cc:splitter>
+        <cc:async-mediation id="AddEmployeeType" routes-to="Aggregator">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['f.emplid'] = parts[0].xpath('row/CARDHOLDER_EMPLOYEE_ID')</cc:expression>
+                    <cc:expression>vars['Emp.node']=props['p.hashmap'].get(props['f.emplid'])</cc:expression>
+                    <cc:expression>props['r.WorkerType'] = vars['Emp.node'] != empty?vars['Emp.node'].xpath('wd:Report_Entry/wd:Worker_Type') : ''</cc:expression>
+                </cc:eval>
+                <cc:xslt-plus id="updWrkrType" url="AddEmployeeType.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+*************************Add Employee Type****************************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage00"/>
+        </cc:async-mediation>
+        <cc:aggregator id="Aggregator" collate-when="true" force-batch-on-last-message="true">
+            <cc:size-batch-strategy batch-size="-1"/>
+            <cc:xml-message-content-collater output-mimetype="text/xml">
+        <cc:header-text>&lt;root></cc:header-text>
+        <cc:footer-text>&lt;/root></cc:footer-text>
+      </cc:xml-message-content-collater>
+        </cc:aggregator>
+        <cc:local-out id="PutIntegrationMessage00" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error in updating worker Type' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:local-out id="PutIntegrationMessage2" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'CRITICAL'"/><cc:set name="is.message.summary" value="'Please verify the attached Supplier_Invoice_Consolidated_Error_Log for errors'"/></cc:local-out>
+        <cc:local-in id="InProcessFile0" routes-to="Route2"/>
+        <cc:route id="Route2">
+            <cc:doc-iterator variable-name="wd.retrieve.variableV"/>
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation70"/>
+        </cc:route>
+        <cc:async-mediation id="AsyncMediation70" routes-to="AsyncMediation00">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['pInputFileName'] = vars['wd.retrieve.variableV'].fileName</cc:expression>
+                </cc:eval>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="AsyncMediation00" routes-to="CallGetEmpData0" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:validate-exp id="ValidateExp">
+                    <cc:expression failure-message="No data found in input file.">vars['wd.retrieve.variableV'].length != 0</cc:expression>
+                </cc:validate-exp>
+                <cc:csv-to-xml id="CsvToXml" output="variable" output-variable="v.csvtoxml.fileV" input="variable" input-variable="wd.retrieve.variableV" colNames="ID,SOURCE_ID,ACTIVITY_TYPE,ACTIVITY_DESCRIPTION,POSTED_DATE,AUTHORIZATION_DATE,MANUALLY_ADDED_DATE,REQUESTED_AMOUNT,POSTED_AMOUNT,POSTED_CURRENCY,FEE,ORIGINAL_AMOUNT,ORIGINAL_CURRENCY,CARDHOLDER,CARDHOLDER_EMPLOYEE_ID,CARDHOLDER_EMAIL,CARDHOLDER_GUEST,CARD_DESCRIPTION,CARD_NICKNAME,CARD_OWNER,APPROVER_TYPE,APPROVED_BY_EMAIL,POLICY,POLICY_CATEGORY,MERCHANT_CATEGORY,MERCHANT_NAME,MERCHANT_ADDRESS,BILLABLE_ENTITY,BILLABLE_ENTITY_AMOUNT,BILLABLE_ENTITY_CURRENCY,LEGAL_ENTITY,LEGAL_ENTITY_AMOUNT,LEGAL_ENTITY_CURRENCY,TRANSACTION_DESCRIPTION,GL_CODE_NUMBER,GL_CODE_NAME,TAXABLE_BENEFIT,PERSONAL,PERSONAL_AMOUNT,FLAGGED,FLAG_STATUS,FLAG_REASONS,REIMBURSEMENT_METHOD,AMOUNT_REPAID,AMOUNT_REJECTED,ADMIN_NOTE,TRIP_UUID,TRIP_NAME,TRIP_PURPOSE,INVITER_EMPLOYEE_ID,INVITER_EMAIL,INVITER_NAME,INVITER_DEPARTMENT,INVITER_REGION,INVITER_COST_CENTER,INVITER_SUBSIDIARY,HOTEL_NAME,BOOKING_START_DATE,BOOKING_END_DATE,FLIGHT_ORIGIN_AIRPORT,FLIGHT_DESTINATION_AIRPORT,FLIGHT_CABIN,FLIGHT_MILES,TRAIN_MILES,BOOKING_STATUS,RELATED_TRAVELERS,TRAVELERS_EMPLOYEE_ID,TRAVELERS_REGION,TRAVELERS_DEPARTMENT,TRAVELERS_COST_CENTER,TRAVELERS_SUBSIDIARY,TRANSACTION_REGION,TRANSACTION_DEPARTMENT,TRANSACTION_COST_CENTER,TRANSACTION_SUBSIDIARY,BOOKERS,NAVAN_BOOKING_IDS,ETICKETS,RECEIPT,RECEIPT_NAVAN,ERECEIPT,ERECEIPT_NAVAN,PARTICIPANTS,VAT_NUMBER,COUNTRY_OF_TRANSACTION,TAX_TOTAL,TAX_TYPE_1,NET_AMOUNT_1,TAX_AMOUNT_1,TAX_TYPE_2,NET_AMOUNT_2,TAX_AMOUNT_2,TAX_TYPE_3,NET_AMOUNT_3,TAX_AMOUNT_3,VENDOR,DISTANCE_UNIT,DISTANCE_AMOUNT,EXCHANGE_RATE,REIMBURSEMENT_EXCHANGE_RATE,ITEM_ID,ITEM_TITLE,INVOICE_DATE,INVOICE_NUMBER,NET_AMOUNT,ORIGINAL_TXN_ID,TA_INVOICE,REIMBURSEMENT_DATE,REIMBURSEMENT_AMOUNT,REIMBURSEMENT_CURRENCY,REPAID_TRANSACTION_ID,ADJUSTMENT_DESCRIPTION,HOTEL_PAYMENT_TYPE,POSTED_DATE_TIME,MODIFIED_TIMESTAMP,FX_FEE_AMOUNT,DIRECT_REIMBURSEMENT_FEE_AMOUNT,STATEMENT_ID,VCF_TRANSACTION_REFERENCE_NUMBER,EST_DOC_DATE,EST_DOC_NUMBER,EST_DOC_LINK,REBATE_TYPE,ACCRUED_REBATE_AMOUNT,APPROVAL_STATUS,LAST_APPROVER_ACTION_DATE,NAVAN_BOOKING_UUID,REPORT_TRANSACTION_ID,Custom - Bill to client,CUSTOM_FIELD_LABEL - billToClient - Bill to client,CUSTOM_FIELD_VALUE - billToClient - Bill to client,Custom - Custom Field 2,CUSTOM_FIELD_LABEL - customField2 - Custom Field 2,CUSTOM_FIELD_VALUE - customField2 - Custom Field 2,Custom - Custom Field 3,CUSTOM_FIELD_LABEL - customField3 - Custom Field 3,CUSTOM_FIELD_VALUE - customField3 - Custom Field 3,Custom - Custom Field 4,CUSTOM_FIELD_LABEL - customField4 - Custom Field 4,CUSTOM_FIELD_VALUE - customField4 - Custom Field 4,Custom - Projects,CUSTOM_FIELD_LABEL - projects - Projects,CUSTOM_FIELD_VALUE - projects - Projects,Custom - Vertex Project_Task Code,CUSTOM_FIELD_LABEL - customField1 - Vertex Project_Task Code,CUSTOM_FIELD_VALUE - customField1 - Vertex Project_Task Code" format="rfc4180" separator="," useFirstLineAsHeader="true"/>
+                <cc:copy id="Copy0" output-mimetype="text/xml" input="variable" input-variable="v.csvtoxml.fileV"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+CsvToXml&#xD;
+&#xD;
+</cc:text>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval">
+                    <cc:expression>props['RecordFound'] = parts[0].xpath('/root').isEmpty()</cc:expression>
+                </cc:eval>
+                <cc:validate-exp id="ValidateExp0">
+                    <cc:expression failure-message="No data found in input file.">props['RecordFound'] == false</cc:expression>
+                </cc:validate-exp>
+                <cc:store id="Store" input="variable" input-variable="v.csvtoxml.fileV" expiresIn="@{props['p.document.retention.use']}" title="CSVtoXMLfileInPreCheckMode.xml"/>
+                <cc:copy id="Copy" output-mimetype="text/xml" input="variable" input-variable="v.csvtoxml.fileV"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+*********************************XML Output in Validation Mode Run******************************************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage01"/>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage01" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'WARNING'"/>
+            <cc:set name="is.message.summary" value="'Error in CSV to XML conversion : ' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:local-out id="CallGetEmpData0" store-message="none" routes-response-to="AsyncMediation40" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/GetFileEmpDataIn">
+            <cc:set name="pZipCollate" value="true"/>
+            <cc:set name="pZipBatch" value="false"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] # 'inValidationMode.csv'"/>
+        </cc:local-out>
+        <cc:async-mediation id="GroupbyCompantoBase640" routes-to="Splitter1">
+            <cc:steps>
+                <cc:copy id="Copy" input="variable" input-variable="Split.GroupInitialV.xml"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+---updated xml in Validation Mode----&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:xslt-plus id="GroupbyLinesforBase64" url="GroupbylinesforBase64.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+*************************Groupbylines for Base64 in ValidationMode****************************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage050"/>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage050" endpoint="vm://wcc/PutIntegrationMessage">
+            <cc:set name="is.message.severity" value="'ERROR'"/>
+            <cc:set name="is.message.summary" value="'Error while generating Base64 String' + context.errorMessage"/>
+        </cc:local-out>
+        <cc:splitter id="Splitter1">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation11"/>
+            <cc:xml-stream-splitter xpath="root/group"/>
+        </cc:splitter>
+        <cc:async-mediation id="AsyncMediation11" routes-to="Splitter20" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:xslt-plus id="XsltPlus" url="updateRebateRow.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+***********************************Split group for Base 64 in ValidationMode***************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['base64.str'] = ''</cc:expression>
+                    <cc:expression>props['blank_empid'] =  parts[0].xpath(&quot;count(/group/row[CARDHOLDER_EMPLOYEE_ID = ''])&quot;)</cc:expression>
+                    <cc:expression>props['blank_costcenter'] =  parts[0].xpath(&quot;count(/group[row/TRAVELERS_COST_CENTER = ''])&quot;)</cc:expression>
+                    <cc:expression>props['blank_amount'] =  parts[0].xpath(&quot;count(/group[row/POSTED_AMOUNT = ''])&quot;)</cc:expression>
+                    <cc:expression>props['company'] = parts[0].xpath(&quot;/group/row/LEGAL_ENTITY[1]&quot;)</cc:expression>
+                    <cc:expression>props['todaysdate'] = util.currentDateTimeAsString().substring(0,10)</cc:expression>
+                    <cc:expression>props['incorrect_Employee'] =  parts[0].xpath(&quot;count(/group[row/WORKER_TYPE = ''])&quot;)</cc:expression>
+                    <cc:expression>props['empid'] =  parts[0].xpath(&quot;/group/row[WORKER_TYPE = '']/CARDHOLDER_EMPLOYEE_ID&quot;)</cc:expression>
+                    <cc:expression>props['empid2'] =  parts[0].xpath(&quot;/group/row[TRAVELERS_COST_CENTER  = '']/CARDHOLDER_EMPLOYEE_ID&quot;)</cc:expression>
+                    <cc:expression>props['blank_amount1'] =  parts[0].xpath(&quot;count(/group[row/POSTED_AMOUNT = 'NaN'])&quot;)</cc:expression>
+                    <cc:expression>props['empid1'] =  parts[0].xpath(&quot;/group/row[POSTED_AMOUNT = 'NaN']/CARDHOLDER_EMPLOYEE_ID&quot;)</cc:expression>
+                </cc:eval>
+                <cc:validate-exp id="ValidateExp">
+                    <cc:expression failure-message="Blank Employee ID found for the given supplier Invoice for company @{props['company']}">props['blank_empid'] == 0</cc:expression>
+                    <cc:expression failure-message="Blank Cost Center found for the given supplier Invoice for company @{props['company']}  Employee ID @{props['empid2']}">props['blank_costcenter'] == 0</cc:expression>
+                    <cc:expression failure-message="Blank Amount found for the given supplier Invoice for company @{props['company']}">props['blank_amount'] == 0</cc:expression>
+                    <cc:expression failure-message="Incorrect Employee ID found for the given supplier Invoice for company @{props['company']} Employee ID @{props['empid']}">props['incorrect_Employee'] == 0</cc:expression>
+                    <cc:expression failure-message="Company CO_22 records will be skipped">props['company'] != 'CO_22'</cc:expression>
+                    <cc:expression failure-message="Company CO_28 records will be skipped">props['company'] != 'CO_28'</cc:expression>
+                    <cc:expression failure-message="Blank Amount found for the given supplier Invoice for company @{props['company']}  Employee ID @{props['empid1']}">props['blank_amount1'] == 0</cc:expression>
+                </cc:validate-exp>
+                <cc:copy id="Copy" output="variable" output-variable="split.group.xmlV"/>
+                <cc:copy id="Copy0" input="variable" input-variable="Split.Group0V.xml"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors00"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors00">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Validation Supplier Invoices &amp; Invoice Lines in Precheck Mode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="CallZipLogFileCreate1010" store-message="none" execute-when="props['RecordFound1'] == false" routes-response-to="AsyncMediation100" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ZipLogFileCreate0">
+            <cc:set name="pZipCollate" value="true"/>
+            <cc:set name="pZipBatch" value="false"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] #'inValidationMode.csv'"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation100" routes-to="Group_By_Company0">
+            <cc:steps>
+                <cc:eval id="Eval0">
+                    <cc:expression>props['base64.str'] = ''</cc:expression>
+                </cc:eval>
+                <cc:eval execute-when="props['RecordFound1'] == false" id="Eval">
+                    <cc:expression>props['base64.str'] = vars['base64.varV'].text</cc:expression>
+                </cc:eval>
+                <cc:log id="Log1">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+props['base64.str']: @{props['base64.str']}</cc:text>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:copy execute-when="props['RecordFound1'] == false" id="Copy"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors20"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors20">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while encoding the csv file in Precheck Mode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="BuildWebServiceRequest0" routes-to="Submit_Supplier_Invoice_WS0" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:xslt-plus execute-when="props['RecordFound1'] == false" id="XsltPlus" url="buildWSRequest.xsl"/>
+                <cc:set-headers id="SetHeaders">
+                    <cc:remove-headers/>
+                    <cc:add-headers>
+                        <cc:add-header name="X-Validate-Only" value="1"/>
+                    </cc:add-headers>
+                </cc:set-headers>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>webservice Request in Validation Mode&#xD;
+==========================&#xD;
+</cc:text>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors3"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors3">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while creating the Supplier Invoices &amp; Invoice Lines in Precheck Mode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="Group_By_Company0" routes-to="BuildWebServiceRequest0" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:copy execute-when="props['RecordFound1'] == false" id="Copy" input="variable" input-variable="split.group.xmlV"/>
+                <cc:xslt-plus execute-when="props['RecordFound1'] == false" id="XsltPlus" url="CSV_Records_Group_by_Company.xsl"/>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>&#xD;
+&#xD;
+****************************Group By Company XML in Validation Mode*****************************&#xD;
+&#xD;
+</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors10"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="Errors10">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error while grouping the input data in Precheck Mode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:workday-out-soap id="Submit_Supplier_Invoice_WS0" execute-when="props['RecordFound1'] == false" application="Resource_Management" version="V44.0"/>
+        <cc:local-in id="ZipLogFileCreate0" routes-to="AsyncMediation20"/>
+        <cc:async-mediation id="AsyncMediation20" routes-to="Aggregator00">
+            <cc:steps>
+                <cc:store execute-when="1 == 2" id="Store" output="attachment" output-attachment-index="0" output-mimetype="application/zip" input="message" createDocumentReference="true" expiresIn="P6M" title="@{props['company']} _ @{props['todaysdate']}_inPreCheckMode.csv"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:aggregator id="Aggregator00" routes-to="StoreLog0" collate-when="props['pZipCollate']" force-batch-on-last-message="false" force-batch-when="props['pZipBatch']">
+            <cc:size-batch-strategy batch-size="-1"/>
+            <cc:zip-file-collater output-mimetype="application/zip" format="zip" message-entity-name="@{props['UZipLog_FileName']}"/>
+        </cc:aggregator>
+        <cc:async-mediation id="StoreLog0">
+            <cc:steps>
+                <cc:store id="Store" output-mimetype="application/zip" createDocumentReference="true" expiresIn="@{props['p.document.retention.use']}" title="CompanyGroupingInPreCheckMode.zip"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="ProcessFileInValidationMode" store-message="none" routes-response-to="AggrZipLog0" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/InProcessFile0"/>
+        <cc:local-out id="Error_Logs0" store-message="none" execute-when="props['error'] > 0" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ErrorLog"/>
+        <cc:local-out id="AggrZipLog0" store-message="none" routes-response-to="Route00" endpoint="vm://INT132C_STU_Navan_Supplier_Invoice_Inbound/ZipLogFileCreate0">
+            <cc:set name="pZipCollate" value="false"/>
+            <cc:set name="pZipBatch" value="true"/>
+            <cc:set name="UZipLog_FileName" value="props['company'] # '_' # props['todaysdate'] #'inValidationMode.csv'"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation4" routes-to="GroupbyCompantoBase64">
+            <cc:steps>
+                <cc:copy id="Copy" output="variable" output-variable="Split.GroupInitial.xml"/>
+                <cc:xslt-plus id="GroupbyLinesforBase64" url="GroupbyCompany.xsl"/>
+                <cc:copy id="Copy0" output="variable" output-variable="Split.Group0.xml"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage3"/>
+        </cc:async-mediation>
+        <cc:splitter id="Splitter2">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation3"/>
+            <cc:xml-stream-splitter xpath="root/group"/>
+        </cc:splitter>
+        <cc:async-mediation id="AsyncMediation3" routes-to="CallZipLogFileCreate101">
+            <cc:steps>
+                <cc:xslt-plus id="XsltPlus" url="ProcessingCompany.xsl"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['RecordFound1'] = parts[0].xpath('/group/row').isEmpty()</cc:expression>
+                </cc:eval>
+                <cc:xml-to-csv execute-when="props['RecordFound1'] == false" id="XmlToCsv" output="message" writeHeaderLine="true"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>props['blank_empid'] =  @{props['blank_empid']}&#xD;
+props['blank_costcenter'] = @{props['blank_costcenter']}&#xD;
+props['company']  = @{props['company']}&#xD;
+props['RecordFound1']= @{props['RecordFound1']}&#xD;
+*********************************Base64 to CSV******************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:base64-encode execute-when="props['RecordFound1'] == false" id="Base64Encode" output="variable" output-variable="base64.var"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors01"/>
+        </cc:async-mediation>
+        <cc:local-out id="PutIntegrationMessage3" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="'Error while generating Base64 String' + context.errorMessage"/></cc:local-out>
+        <cc:async-mediation id="Errors01">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error in Base64Encode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="AsyncMediation40" routes-to="GroupbyCompantoBase640">
+            <cc:steps>
+                <cc:copy id="Copy" output="variable" output-variable="Split.GroupInitialV.xml"/>
+                <cc:xslt-plus id="GroupbyLinesforBase64" url="GroupbyCompany.xsl"/>
+                <cc:copy id="Copy0" output="variable" output-variable="Split.Group0V.xml"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="PutIntegrationMessage4"/>
+        </cc:async-mediation>
+        <cc:async-mediation id="AsyncMediation5" routes-to="CallZipLogFileCreate1010">
+            <cc:steps>
+                <cc:xslt-plus id="XsltPlus" url="ProcessingCompany.xsl"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['RecordFound1'] = parts[0].xpath('/group/row').isEmpty()</cc:expression>
+                </cc:eval>
+                <cc:xml-to-csv execute-when="props['RecordFound1'] == false" id="XmlToCsv" output="message" input="message" writeHeaderLine="true"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:text>props['blank_empid'] =  @{props['blank_empid']}&#xD;
+props['blank_costcenter'] = @{props['blank_costcenter']}&#xD;
+props['company']  = @{props['company']}&#xD;
+props['RecordFound1']= @{props['RecordFound1']}&#xD;
+*********************************Base64 to CSV******************************</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:base64-encode execute-when="props['RecordFound1'] == false" id="Base64Encode" output="variable" output-variable="base64.varV" input="message"/>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="Errors010"/>
+        </cc:async-mediation>
+        <cc:splitter id="Splitter20">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation5"/>
+            <cc:xml-stream-splitter xpath="root/group"/>
+        </cc:splitter>
+        <cc:local-out id="PutIntegrationMessage4" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="'Error while generating Base64 String in Validation Mode' + context.errorMessage"/></cc:local-out>
+        <cc:async-mediation id="Errors010">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['error'] = props['error'] + 1</cc:expression>
+                </cc:eval>
+                <cc:cloud-log id="CloudLog" level="error" message="Error in Base64Encode in Validation Mode" message-details="The message detail is : &quot;@{context.errorMessage}&quot;.The error generated from the following studio component : &quot;@{context.errorComponentId}&quot;" output-file-type="HTML" reference-id="props['company']" variable-name="Failure"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:route id="Route00">
+            <cc:mvel-strategy>
+                <cc:choose-route expression="props['error'] > 0" route="ErrorLogAndStopIntegration"/>
+                <cc:choose-route expression="true" route="ActualRun"/>
+            </cc:mvel-strategy>
+            <cc:sub-route name="ErrorLogAndStopIntegration" routes-to="Error_Logs0"/>
+            <cc:sub-route name="ActualRun" routes-to="ProcessFile"/>
+        </cc:route>
+	</cc:assembly>
+
+</beans>

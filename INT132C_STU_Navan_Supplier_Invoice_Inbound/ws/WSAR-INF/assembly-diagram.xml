@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wdnm:Diagram xmlns:wdnm="http://workday.com/studio/editors/notation">
+  <element href="assembly.xml#WorkdayAssembly"/>
+  <visualProperties x="97" y="105">
+    <element href="assembly.xml#StartHere"/>
+  </visualProperties>
+  <visualProperties x="206" y="138">
+    <element href="assembly.xml#AsyncMediation"/>
+  </visualProperties>
+  <visualProperties x="593" y="315">
+    <element href="assembly.xml#GetEventDocuments"/>
+  </visualProperties>
+  <visualProperties x="676" y="271">
+    <element href="assembly.xml#Route0"/>
+  </visualProperties>
+  <visualProperties x="839" y="257">
+    <element href="assembly.xml#PutIntegrationMessage"/>
+  </visualProperties>
+  <visualProperties x="902" y="218">
+    <element href="assembly.xml#GetEmpData"/>
+  </visualProperties>
+  <visualProperties x="132" y="500">
+    <element href="assembly.xml#InProcessFile"/>
+  </visualProperties>
+  <visualProperties x="555" y="500">
+    <element href="assembly.xml#Route"/>
+  </visualProperties>
+  <visualProperties x="609" y="556">
+    <element href="assembly.xml#AsyncMediation7"/>
+  </visualProperties>
+  <visualProperties x="792" y="551">
+    <element href="assembly.xml#PutIntegrationMessage1"/>
+  </visualProperties>
+  <visualProperties x="921" y="581">
+    <element href="assembly.xml#AsyncMediation0"/>
+  </visualProperties>
+  <visualProperties x="1090" y="595">
+    <element href="assembly.xml#PutIntegrationMessage0"/>
+  </visualProperties>
+  <visualProperties x="1109" y="622">
+    <element href="assembly.xml#Group_By_Company"/>
+  </visualProperties>
+  <visualProperties x="1110" y="614">
+    <element href="assembly.xml#GroupbyCompantoBase64"/>
+  </visualProperties>
+  <visualProperties x="1335" y="591">
+    <element href="assembly.xml#Splitter"/>
+  </visualProperties>
+  <visualProperties x="1477" y="582">
+    <element href="assembly.xml#AsyncMediation1"/>
+  </visualProperties>
+  <visualProperties x="2229" y="619">
+    <element href="assembly.xml#BuildWebServiceRequest"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#ZipLogFileCreate"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Aggregator0"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#StoreLog"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#ErrorLog"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#SuccessLog"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#SuccessDetails"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CloudLogger"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#PostErrorAndSuccessLog"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Route1"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#PutSummary"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#StoreHTMLLog"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#PutErrorDetails"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#PutErrorReport"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#//@beans/@mixed.1/@mixed.63"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Note-Error"/>
+  </visualProperties>
+  <visualProperties x="1129" y="220">
+    <element href="assembly.xml#ProcessFile"/>
+  </visualProperties>
+  <visualProperties x="125" y="442">
+    <element href="assembly.xml#GetEmpDataIn"/>
+  </visualProperties>
+  <visualProperties x="2569" y="692">
+    <element href="assembly.xml#CallZipLogFileCreate101"/>
+  </visualProperties>
+  <visualProperties x="2815" y="692">
+    <element href="assembly.xml#AsyncMediation10"/>
+  </visualProperties>
+  <visualProperties x="206" y="456">
+    <element href="assembly.xml#WorkdayOutRest"/>
+  </visualProperties>
+  <visualProperties x="8" y="430">
+    <element href="assembly.xml#SplitReport"/>
+  </visualProperties>
+  <visualProperties x="174" y="430">
+    <element href="assembly.xml#InserttoHash"/>
+  </visualProperties>
+  <visualProperties x="499" y="174">
+    <element href="assembly.xml#PutIntegrationMessage02"/>
+  </visualProperties>
+  <visualProperties x="189" y="438">
+    <element href="assembly.xml#CatchReportError"/>
+  </visualProperties>
+  <visualProperties x="340" y="511">
+    <element href="assembly.xml#PutIntegrationMessage03"/>
+  </visualProperties>
+  <visualProperties x="820" y="511">
+    <element href="assembly.xml#PutIntegrationMessage04"/>
+  </visualProperties>
+  <visualProperties x="1153" y="833">
+    <element href="assembly.xml#PutIntegrationMessage05"/>
+  </visualProperties>
+  <visualProperties x="1132" y="204">
+    <element href="assembly.xml#Error_Logs"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Processing_output_Error"/>
+  </visualProperties>
+  <visualProperties x="1264" y="204">
+    <element href="assembly.xml#Success_Logs"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Submit_Supplier_Invoice_WS"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#Success_Records_SPI"/>
+  </visualProperties>
+  <visualProperties x="2579" y="282">
+    <element href="assembly.xml#Errors"/>
+  </visualProperties>
+  <visualProperties x="1994" y="891">
+    <element href="assembly.xml#Errors0"/>
+  </visualProperties>
+  <visualProperties x="1381" y="39">
+    <element href="assembly.xml#AggrZipLog"/>
+  </visualProperties>
+  <visualProperties x="191" y="1288">
+    <element href="assembly.xml#AsyncMediation2"/>
+  </visualProperties>
+  <visualProperties x="2938" y="929">
+    <element href="assembly.xml#Errors1"/>
+  </visualProperties>
+  <visualProperties x="2690" y="962">
+    <element href="assembly.xml#Errors2"/>
+  </visualProperties>
+  <visualProperties x="1118" y="890">
+    <element href="assembly.xml#CallGetEmpData"/>
+  </visualProperties>
+  <visualProperties x="43" y="1179">
+    <element href="assembly.xml#GetFileEmpDataIn"/>
+  </visualProperties>
+  <visualProperties x="216" y="1239">
+    <element href="assembly.xml#Splitter0"/>
+  </visualProperties>
+  <visualProperties x="363" y="1302">
+    <element href="assembly.xml#AddEmployeeType"/>
+  </visualProperties>
+  <visualProperties x="618" y="1258">
+    <element href="assembly.xml#Aggregator"/>
+  </visualProperties>
+  <visualProperties x="829" y="1302">
+    <element href="assembly.xml#PutIntegrationMessage00"/>
+  </visualProperties>
+  <visualProperties x="500" y="2023">
+    <element href="assembly.xml#PutIntegrationMessage2"/>
+  </visualProperties>
+  <visualProperties x="123" y="823">
+    <element href="assembly.xml#InProcessFile0"/>
+  </visualProperties>
+  <visualProperties x="217" y="842">
+    <element href="assembly.xml#Route2"/>
+  </visualProperties>
+  <visualProperties x="364" y="905">
+    <element href="assembly.xml#AsyncMediation70"/>
+  </visualProperties>
+  <visualProperties x="804" y="905">
+    <element href="assembly.xml#AsyncMediation00"/>
+  </visualProperties>
+  <visualProperties x="1417" y="905">
+    <element href="assembly.xml#PutIntegrationMessage01"/>
+  </visualProperties>
+  <visualProperties x="1668" y="905">
+    <element href="assembly.xml#CallGetEmpData0"/>
+  </visualProperties>
+  <visualProperties x="1873" y="905">
+    <element href="assembly.xml#GroupbyCompantoBase640"/>
+  </visualProperties>
+  <visualProperties x="2182" y="905">
+    <element href="assembly.xml#PutIntegrationMessage050"/>
+  </visualProperties>
+  <visualProperties x="2441" y="905">
+    <element href="assembly.xml#Splitter1"/>
+  </visualProperties>
+  <visualProperties x="2588" y="905">
+    <element href="assembly.xml#AsyncMediation11"/>
+  </visualProperties>
+  <visualProperties x="3174" y="905">
+    <element href="assembly.xml#Errors00"/>
+  </visualProperties>
+  <visualProperties x="3350" y="905">
+    <element href="assembly.xml#CallZipLogFileCreate1010"/>
+  </visualProperties>
+  <visualProperties x="3604" y="905">
+    <element href="assembly.xml#AsyncMediation100"/>
+  </visualProperties>
+  <visualProperties x="3805" y="905">
+    <element href="assembly.xml#Errors20"/>
+  </visualProperties>
+  <visualProperties x="3981" y="905">
+    <element href="assembly.xml#BuildWebServiceRequest0"/>
+  </visualProperties>
+  <visualProperties x="4237" y="905">
+    <element href="assembly.xml#Errors3"/>
+  </visualProperties>
+  <visualProperties x="4413" y="905">
+    <element href="assembly.xml#Group_By_Company0"/>
+  </visualProperties>
+  <visualProperties x="4631" y="905">
+    <element href="assembly.xml#Errors10"/>
+  </visualProperties>
+  <visualProperties x="4807" y="905">
+    <element href="assembly.xml#Submit_Supplier_Invoice_WS0"/>
+  </visualProperties>
+  <visualProperties x="123" y="1955">
+    <element href="assembly.xml#ZipLogFileCreate0"/>
+  </visualProperties>
+  <visualProperties x="238" y="1974">
+    <element href="assembly.xml#AsyncMediation20"/>
+  </visualProperties>
+  <visualProperties x="427" y="2003">
+    <element href="assembly.xml#Aggregator00"/>
+  </visualProperties>
+  <visualProperties x="597" y="2008">
+    <element href="assembly.xml#StoreLog0"/>
+  </visualProperties>
+  <visualProperties x="1228" y="152">
+    <element href="assembly.xml#ProcessFileInValidationMode"/>
+  </visualProperties>
+  <visualProperties x="2409" y="267">
+    <element href="assembly.xml#Error_Logs0"/>
+  </visualProperties>
+  <visualProperties x="2352" y="267">
+    <element href="assembly.xml#AggrZipLog0"/>
+  </visualProperties>
+  <visualProperties x="1497" y="1283">
+    <element href="assembly.xml#AsyncMediation4"/>
+  </visualProperties>
+  <visualProperties x="3145" y="1277">
+    <element href="assembly.xml#Splitter2"/>
+  </visualProperties>
+  <visualProperties x="3292" y="1262">
+    <element href="assembly.xml#AsyncMediation3"/>
+  </visualProperties>
+  <visualProperties x="1645" y="1429">
+    <element href="assembly.xml#PutIntegrationMessage3"/>
+  </visualProperties>
+  <visualProperties x="4169" y="1417">
+    <element href="assembly.xml#Errors01"/>
+  </visualProperties>
+  <visualProperties x="1757" y="865">
+    <element href="assembly.xml#AsyncMediation40"/>
+  </visualProperties>
+  <visualProperties x="3196" y="870">
+    <element href="assembly.xml#AsyncMediation5"/>
+  </visualProperties>
+  <visualProperties x="3274" y="913">
+    <element href="assembly.xml#Splitter20"/>
+  </visualProperties>
+  <visualProperties x="2078" y="978">
+    <element href="assembly.xml#PutIntegrationMessage4"/>
+  </visualProperties>
+  <visualProperties x="4482" y="1020">
+    <element href="assembly.xml#Errors010"/>
+  </visualProperties>
+  <visualProperties x="2520" y="267">
+    <element href="assembly.xml#Route00"/>
+  </visualProperties>
+  <connections type="routesTo" sourceAnchorX="0.6055045871559633" sourceAnchorY="1.0" targetAnchorX="0.18823529411764706" targetAnchorY="0.43243243243243246">
+    <source href="assembly.xml#StartHere"/>
+    <target href="assembly.xml#GetEventDocuments"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.5823529411764706" sourceAnchorY="1.0" targetAnchorX="0.2283464566929134" targetAnchorY="0.21739130434782608">
+    <source href="assembly.xml#GetEventDocuments"/>
+    <target href="assembly.xml#AsyncMediation"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2765957446808511" targetAnchorX="0.6055045871559633" targetAnchorY="0.06538461538461539">
+    <source href="assembly.xml#AsyncMediation"/>
+    <target href="assembly.xml#Route0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7083333333333334" sourceAnchorY="1.0" targetAnchorX="0.16304347826086957" targetAnchorY="0.4594594594594595">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.0/@subRoute.0"/>
+    <target href="assembly.xml#PutIntegrationMessage"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.84375" sourceAnchorY="1.0" targetAnchorX="0.21951219512195122" targetAnchorY="0.7567567567567568">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.0/@subRoute.1"/>
+    <target href="assembly.xml#GetEmpData"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8796992481203008" sourceAnchorY="1.0" targetAnchorX="0.4392523364485981" targetAnchorY="0.13636363636363635">
+    <source href="assembly.xml#InProcessFile"/>
+    <target href="assembly.xml#Route"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.6764705882352942" targetAnchorX="0.06716417910447761" targetAnchorY="0.20212765957446807">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.1/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation7"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.30851063829787234" targetAnchorX="0.24083769633507854" targetAnchorY="0.24324324324324326">
+    <source href="assembly.xml#AsyncMediation7"/>
+    <target href="assembly.xml#PutIntegrationMessage1"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.4973821989528796" sourceAnchorY="1.0" targetAnchorX="0.2787878787878788" targetAnchorY="0.112">
+    <source href="assembly.xml#PutIntegrationMessage1"/>
+    <target href="assembly.xml#AsyncMediation0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7721518987341772" sourceAnchorY="1.0" targetAnchorX="0.14136125654450263" targetAnchorY="0.40540540540540543">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.21/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.3191489361702128" targetAnchorX="0.4672897196261682" targetAnchorY="0.1">
+    <source href="assembly.xml#GroupbyCompantoBase64"/>
+    <target href="assembly.xml#Splitter"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.184" targetAnchorX="0.2537313432835821" targetAnchorY="0.15217391304347827">
+    <source href="assembly.xml#Group_By_Company"/>
+    <target href="assembly.xml#BuildWebServiceRequest"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.18867924528301888" targetAnchorX="0.33112582781456956" targetAnchorY="0.25">
+    <source href="assembly.xml#Aggregator0"/>
+    <target href="assembly.xml#StoreLog"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.935251798561151" sourceAnchorY="1.0" targetAnchorX="0.23270440251572327" targetAnchorY="0.6770833333333334">
+    <source href="assembly.xml#SuccessLog"/>
+    <target href="assembly.xml#SuccessDetails"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7180616740088106" sourceAnchorY="1.0" targetAnchorX="0.042735042735042736" targetAnchorY="0.3333333333333333">
+    <source href="assembly.xml#PostErrorAndSuccessLog"/>
+    <target href="assembly.xml#Route1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7980769230769231" sourceAnchorY="1.0" targetAnchorX="0.17370892018779344" targetAnchorY="0.35135135135135137">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.2/@subRoute.0"/>
+    <target href="assembly.xml#PutSummary"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7596153846153846" sourceAnchorY="1.0" targetAnchorX="0.152317880794702" targetAnchorY="0.6086956521739131">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.2/@subRoute.1"/>
+    <target href="assembly.xml#StoreHTMLLog"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.34375" targetAnchorX="0.2112676056338028" targetAnchorY="0.5135135135135135">
+    <source href="assembly.xml#StoreHTMLLog"/>
+    <target href="assembly.xml#PutErrorDetails"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.5586854460093896" sourceAnchorY="1.0" targetAnchorX="0.37089201877934275" targetAnchorY="0.5675675675675675">
+    <source href="assembly.xml#PutErrorDetails"/>
+    <target href="assembly.xml#PutErrorReport"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.9669421487603306" sourceAnchorY="0.43243243243243246" targetAnchorX="0.06060606060606061" targetAnchorY="0.3783783783783784">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.63"/>
+    <target href="assembly.xml#Note-Error"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.9166666666666666" sourceAnchorY="1.0" targetAnchorX="0.12663755458515283" targetAnchorY="0.6770833333333334">
+    <source href="assembly.xml#CallZipLogFileCreate101"/>
+    <target href="assembly.xml#AsyncMediation10"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.17708333333333334" targetAnchorX="0.047872340425531915" targetAnchorY="0.5118110236220472">
+    <source href="assembly.xml#AsyncMediation10"/>
+    <target href="assembly.xml#Group_By_Company"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.5588235294117647" targetAnchorX="0.1968503937007874" targetAnchorY="0.20652173913043478">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.1/@subRoute.0"/>
+    <target href="assembly.xml#InserttoHash"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.7470588235294118" sourceAnchorY="1.0" targetAnchorX="0.18803418803418803" targetAnchorY="0.1402439024390244">
+    <source href="assembly.xml#WorkdayOutRest"/>
+    <target href="assembly.xml#SplitReport"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5739130434782609" sourceAnchorY="1.0" targetAnchorX="0.41875" targetAnchorY="0.32432432432432434">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.3/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage02"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.6752136752136753" sourceAnchorY="1.0" targetAnchorX="0.09009009009009009" targetAnchorY="0.2391304347826087">
+    <source href="assembly.xml#GetEmpDataIn"/>
+    <target href="assembly.xml#CatchReportError"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.29347826086956524" targetAnchorX="0.1746031746031746" targetAnchorY="0.43243243243243246">
+    <source href="assembly.xml#CatchReportError"/>
+    <target href="assembly.xml#WorkdayOutRest"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.6415094339622641" sourceAnchorY="1.0" targetAnchorX="0.43125" targetAnchorY="0.4594594594594595">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.81/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage03"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.6781609195402298" sourceAnchorY="1.0" targetAnchorX="0.35" targetAnchorY="0.10810810810810811">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.75/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage04"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.49214659685863876" sourceAnchorY="1.0" targetAnchorX="0.59375" targetAnchorY="0.2972972972972973">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.27/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage05"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8279569892473119" sourceAnchorY="1.0" targetAnchorX="0.18309859154929578" targetAnchorY="0.6847826086956522">
+    <source href="assembly.xml#ErrorLog"/>
+    <target href="assembly.xml#Processing_output_Error"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.5828220858895705" sourceAnchorY="1.0" targetAnchorX="0.02962962962962963" targetAnchorY="0.5760869565217391">
+    <source href="assembly.xml#Submit_Supplier_Invoice_WS"/>
+    <target href="assembly.xml#Success_Records_SPI"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.44525547445255476" sourceAnchorY="1.0" targetAnchorX="0.47244094488188976" targetAnchorY="0.1956521739130435">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.33/@mixed.3"/>
+    <target href="assembly.xml#Errors"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.13385826771653545" targetAnchorX="0.13215859030837004" targetAnchorY="0.16216216216216217">
+    <source href="assembly.xml#BuildWebServiceRequest"/>
+    <target href="assembly.xml#Submit_Supplier_Invoice_WS"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.26861702127659576" sourceAnchorY="1.0" targetAnchorX="0.6712328767123288" targetAnchorY="0.20833333333333334">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.31/@mixed.3"/>
+    <target href="assembly.xml#Errors0"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.674074074074074" sourceAnchorY="1.0" targetAnchorX="0.20982142857142858" targetAnchorY="0.40540540540540543">
+    <source href="assembly.xml#ProcessFile"/>
+    <target href="assembly.xml#AggrZipLog"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.8169642857142857" sourceAnchorY="1.0" targetAnchorX="0.09230769230769231" targetAnchorY="0.5135135135135135">
+    <source href="assembly.xml#AggrZipLog"/>
+    <target href="assembly.xml#Error_Logs"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="1.0" sourceAnchorY="0.5135135135135135" targetAnchorX="0.4129032258064516" targetAnchorY="0.32432432432432434">
+    <source href="assembly.xml#Error_Logs"/>
+    <target href="assembly.xml#Success_Logs"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.3783783783783784" targetAnchorX="0.11920529801324503" targetAnchorY="0.7065217391304348">
+    <source href="assembly.xml#ZipLogFileCreate"/>
+    <target href="assembly.xml#AsyncMediation2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.29347826086956524" targetAnchorX="0.15" targetAnchorY="0.5943396226415094">
+    <source href="assembly.xml#AsyncMediation2"/>
+    <target href="assembly.xml#Aggregator0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.38414634146341464" sourceAnchorY="1.0" targetAnchorX="0.4383561643835616" targetAnchorY="0.28125">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.71/@mixed.3"/>
+    <target href="assembly.xml#Errors2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.712707182320442" sourceAnchorY="1.0" targetAnchorX="0.4726027397260274" targetAnchorY="0.21875">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.25/@mixed.3"/>
+    <target href="assembly.xml#Errors1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8169934640522876" sourceAnchorY="1.0" targetAnchorX="0.3162393162393162" targetAnchorY="0.18292682926829268">
+    <source href="assembly.xml#GetFileEmpDataIn"/>
+    <target href="assembly.xml#Splitter0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.6442307692307693" sourceAnchorY="1.0" targetAnchorX="0.14798206278026907" targetAnchorY="0.44881889763779526">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.2/@subRoute.0"/>
+    <target href="assembly.xml#AddEmployeeType"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.06299212598425197" targetAnchorX="0.35398230088495575" targetAnchorY="0.21621621621621623">
+    <source href="assembly.xml#AddEmployeeType"/>
+    <target href="assembly.xml#Aggregator"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7466666666666667" sourceAnchorY="1.0" targetAnchorX="0.1583710407239819" targetAnchorY="0.6756756756756757">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.117/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage00"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.1732283464566929" targetAnchorX="0.2754491017964072" targetAnchorY="0.5945945945945946">
+    <source href="assembly.xml#AsyncMediation0"/>
+    <target href="assembly.xml#CallGetEmpData"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.6326530612244898" targetAnchorX="0.24701195219123506" targetAnchorY="0.16216216216216217">
+    <source href="assembly.xml#Processing_output_Error"/>
+    <target href="assembly.xml#PutIntegrationMessage2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5909090909090909" sourceAnchorY="1.0" targetAnchorX="0.4017094017094017" targetAnchorY="0.10975609756097561">
+    <source href="assembly.xml#InProcessFile0"/>
+    <target href="assembly.xml#Route2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.16666666666666666" sourceAnchorY="1.0" targetAnchorX="0.46153846153846156" targetAnchorY="0.3783783783783784">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.131/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage01"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7375643224699828" sourceAnchorY="1.0" targetAnchorX="0.17714285714285713" targetAnchorY="0.10810810810810811">
+    <source href="assembly.xml#AsyncMediation00"/>
+    <target href="assembly.xml#CallGetEmpData0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5183823529411765" sourceAnchorY="1.0" targetAnchorX="0.6200873362445415" targetAnchorY="0.5405405405405406">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.137/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage050"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.15748031496062992" targetAnchorX="0.4700854700854701" targetAnchorY="0.08536585365853659">
+    <source href="assembly.xml#GroupbyCompantoBase640"/>
+    <target href="assembly.xml#Splitter1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7211538461538461" sourceAnchorY="1.0" targetAnchorX="0.11870503597122302" targetAnchorY="0.10236220472440945">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.3/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation11"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.20218579234972678" sourceAnchorY="1.0" targetAnchorX="0.7397260273972602" targetAnchorY="0.25">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.143/@mixed.3"/>
+    <target href="assembly.xml#Errors00"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5853658536585366" sourceAnchorY="1.0" targetAnchorX="0.6575342465753424" targetAnchorY="0.2604166666666667">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.149/@mixed.3"/>
+    <target href="assembly.xml#Errors20"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.39226519337016574" sourceAnchorY="1.0" targetAnchorX="0.4863013698630137" targetAnchorY="0.25">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.157/@mixed.3"/>
+    <target href="assembly.xml#Errors10"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.2968036529680365" sourceAnchorY="1.0" targetAnchorX="0.410958904109589" targetAnchorY="0.25">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.153/@mixed.3"/>
+    <target href="assembly.xml#Errors3"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.6696428571428571" sourceAnchorY="1.0" targetAnchorX="0.3333333333333333" targetAnchorY="0.09448818897637795">
+    <source href="assembly.xml#CallZipLogFileCreate1010"/>
+    <target href="assembly.xml#AsyncMediation100"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2283464566929134" targetAnchorX="0.2872340425531915" targetAnchorY="0.14173228346456693">
+    <source href="assembly.xml#AsyncMediation100"/>
+    <target href="assembly.xml#Group_By_Company0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.14173228346456693" targetAnchorX="0.1902654867256637" targetAnchorY="0.13385826771653545">
+    <source href="assembly.xml#Group_By_Company0"/>
+    <target href="assembly.xml#BuildWebServiceRequest0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2283464566929134" targetAnchorX="0.22093023255813954" targetAnchorY="0.10810810810810811">
+    <source href="assembly.xml#BuildWebServiceRequest0"/>
+    <target href="assembly.xml#Submit_Supplier_Invoice_WS0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.64" sourceAnchorY="1.0" targetAnchorX="0.22012578616352202" targetAnchorY="0.16666666666666666">
+    <source href="assembly.xml#ZipLogFileCreate0"/>
+    <target href="assembly.xml#AsyncMediation20"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.1792452830188679" targetAnchorX="0.5045871559633027" targetAnchorY="0.19791666666666666">
+    <source href="assembly.xml#Aggregator00"/>
+    <target href="assembly.xml#StoreLog0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.4423076923076923" sourceAnchorY="1.0" targetAnchorX="0.4528301886792453" targetAnchorY="0.11458333333333333">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.3/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation70"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.4014084507042254" sourceAnchorY="1.0" targetAnchorX="0.2848101265822785" targetAnchorY="0.32432432432432434">
+    <source href="assembly.xml#GetEmpData"/>
+    <target href="assembly.xml#ProcessFileInValidationMode"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2708333333333333" targetAnchorX="0.29285714285714287" targetAnchorY="0.42452830188679247">
+    <source href="assembly.xml#AsyncMediation20"/>
+    <target href="assembly.xml#Aggregator00"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.7644628099173554" sourceAnchorY="1.0" targetAnchorX="0.13043478260869565" targetAnchorY="0.5945945945945946">
+    <source href="assembly.xml#ProcessFileInValidationMode"/>
+    <target href="assembly.xml#AggrZipLog0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8173076923076923" sourceAnchorY="1.0" targetAnchorX="0.11690647482014388" targetAnchorY="0.16535433070866143">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.0/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation1"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.718562874251497" sourceAnchorY="1.0" targetAnchorX="0.21304347826086956" targetAnchorY="0.2604166666666667">
+    <source href="assembly.xml#CallGetEmpData"/>
+    <target href="assembly.xml#AsyncMediation4"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.1968503937007874" targetAnchorX="0.6752136752136753" targetAnchorY="0.08461538461538462">
+    <source href="assembly.xml#AsyncMediation1"/>
+    <target href="assembly.xml#Splitter2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7788461538461539" sourceAnchorY="1.0" targetAnchorX="0.14960629921259844" targetAnchorY="0.13541666666666666">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.4/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation3"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.16666666666666666" targetAnchorX="0.3055555555555556" targetAnchorY="0.24324324324324326">
+    <source href="assembly.xml#AsyncMediation3"/>
+    <target href="assembly.xml#CallZipLogFileCreate101"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.18110236220472442" targetAnchorX="0.050746268656716415" targetAnchorY="0.15748031496062992">
+    <source href="assembly.xml#AsyncMediation4"/>
+    <target href="assembly.xml#GroupbyCompantoBase64"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.921146953405018" sourceAnchorY="1.0" targetAnchorX="0.17370892018779344" targetAnchorY="0.43243243243243246">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.177/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage3"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.242914979757085" sourceAnchorY="1.0" targetAnchorX="0.4041095890410959" targetAnchorY="0.3020833333333333">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.181/@mixed.3"/>
+    <target href="assembly.xml#Errors01"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.6571428571428571" sourceAnchorY="1.0" targetAnchorX="0.09090909090909091" targetAnchorY="0.14960629921259844">
+    <source href="assembly.xml#CallGetEmpData0"/>
+    <target href="assembly.xml#AsyncMediation40"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2283464566929134" targetAnchorX="0.47863247863247865" targetAnchorY="0.06707317073170732">
+    <source href="assembly.xml#AsyncMediation11"/>
+    <target href="assembly.xml#Splitter20"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7115384615384616" sourceAnchorY="1.0" targetAnchorX="0.09055118110236221" targetAnchorY="0.10416666666666667">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.5/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation5"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.17708333333333334" targetAnchorX="0.22767857142857142" targetAnchorY="0.4864864864864865">
+    <source href="assembly.xml#AsyncMediation5"/>
+    <target href="assembly.xml#CallZipLogFileCreate1010"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2677165354330709" targetAnchorX="0.12195121951219512" targetAnchorY="0.12598425196850394">
+    <source href="assembly.xml#AsyncMediation40"/>
+    <target href="assembly.xml#GroupbyCompantoBase640"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.946236559139785" sourceAnchorY="1.0" targetAnchorX="0.4460093896713615" targetAnchorY="0.40540540540540543">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.187/@mixed.3"/>
+    <target href="assembly.xml#PutIntegrationMessage4"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.6680161943319838" sourceAnchorY="1.0" targetAnchorX="0.273972602739726" targetAnchorY="0.10416666666666667">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.189/@mixed.3"/>
+    <target href="assembly.xml#Errors010"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2604166666666667" targetAnchorX="0.11663807890222985" targetAnchorY="0.36220472440944884">
+    <source href="assembly.xml#AsyncMediation70"/>
+    <target href="assembly.xml#AsyncMediation00"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.5869565217391305" sourceAnchorY="1.0" targetAnchorX="0.42016806722689076" targetAnchorY="0.05555555555555555">
+    <source href="assembly.xml#AggrZipLog0"/>
+    <target href="assembly.xml#Route00"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8018867924528302" sourceAnchorY="1.0" targetAnchorX="0.30434782608695654" targetAnchorY="0.08108108108108109">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.4/@subRoute.0"/>
+    <target href="assembly.xml#Error_Logs0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7358490566037735" sourceAnchorY="1.0" targetAnchorX="0.13333333333333333" targetAnchorY="0.3783783783783784">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.4/@subRoute.1"/>
+    <target href="assembly.xml#ProcessFile"/>
+  </connections>
+  <swimlanes x="74" y="65" name="Main">
+    <elements href="assembly.xml#StartHere"/>
+    <elements href="assembly.xml#GetEventDocuments"/>
+    <elements href="#//@swimlanes.15"/>
+    <elements href="assembly.xml#Route0"/>
+    <elements href="assembly.xml#PutIntegrationMessage"/>
+    <elements href="assembly.xml#GetEmpData"/>
+    <elements href="assembly.xml#ProcessFileInValidationMode"/>
+    <elements href="assembly.xml#AggrZipLog0"/>
+    <elements href="assembly.xml#Route00"/>
+    <elements href="assembly.xml#Error_Logs0"/>
+    <elements href="assembly.xml#ProcessFile"/>
+    <elements href="assembly.xml#AggrZipLog"/>
+    <elements href="assembly.xml#Error_Logs"/>
+    <elements href="assembly.xml#Success_Logs"/>
+  </swimlanes>
+  <swimlanes x="110" y="458" name="Web Service Creation">
+    <elements href="assembly.xml#InProcessFile"/>
+    <elements href="assembly.xml#Route"/>
+    <elements href="assembly.xml#AsyncMediation7"/>
+    <elements href="assembly.xml#PutIntegrationMessage1"/>
+    <elements href="#//@swimlanes.2"/>
+    <elements href="assembly.xml#CallGetEmpData"/>
+    <elements href="#//@swimlanes.33"/>
+    <elements href="#//@swimlanes.18"/>
+    <elements href="assembly.xml#Splitter"/>
+    <elements href="#//@swimlanes.14"/>
+    <elements href="#//@swimlanes.34"/>
+    <elements href="#//@swimlanes.3"/>
+    <elements href="#//@swimlanes.20"/>
+    <elements href="#//@swimlanes.22"/>
+  </swimlanes>
+  <swimlanes x="788" y="565" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation0"/>
+    <elements href="assembly.xml#PutIntegrationMessage0"/>
+  </swimlanes>
+  <swimlanes x="1116" y="648" name="GroupByCompany" orientation="VERTICAL">
+    <elements href="assembly.xml#Group_By_Company"/>
+    <elements href="assembly.xml#Errors1"/>
+  </swimlanes>
+  <swimlanes x="136" y="571" name="Zip Log Creator" description="This sub-assembly is used to create a zip log file for audit pupose. This will hold the intermediary outputs at particular steps." labelAlignment="LEFT">
+    <elements href="assembly.xml#ZipLogFileCreate"/>
+    <elements href="assembly.xml#AsyncMediation2"/>
+    <elements href="assembly.xml#Aggregator0"/>
+    <elements href="assembly.xml#StoreLog"/>
+  </swimlanes>
+  <swimlanes x="18" y="53" font="Arial|14|0" fontColor="1" name="INT132C_STU_Navan_Supplier_Invoice_Inbound" orientation="VERTICAL" elements="//@swimlanes.0 //@swimlanes.13 //@swimlanes.25 //@swimlanes.1 //@swimlanes.23 //@swimlanes.32 //@swimlanes.4 //@swimlanes.9 //@swimlanes.11 //@swimlanes.12" labelAlignment="LEFT"/>
+  <swimlanes name="Error Log" labelAlignment="LEFT">
+    <elements href="assembly.xml#ErrorLog"/>
+    <elements href="#//@swimlanes.21"/>
+    <elements href="assembly.xml#PutIntegrationMessage2"/>
+  </swimlanes>
+  <swimlanes name="Success Log" labelAlignment="LEFT">
+    <elements href="assembly.xml#SuccessLog"/>
+    <elements href="assembly.xml#SuccessDetails"/>
+  </swimlanes>
+  <swimlanes name="Error and Success Log" orientation="VERTICAL" elements="//@swimlanes.6 //@swimlanes.7" labelAlignment="LEFT"/>
+  <swimlanes y="65" name="Error and Success Log" description="This sub-assembly is used to store the error and success message on the cloud log. This Cloud log will be posted on the integration event with error and success counts." alignment="MIDDLE" labelAlignment="LEFT">
+    <elements href="#//@swimlanes.8"/>
+    <elements href="assembly.xml#CloudLogger"/>
+  </swimlanes>
+  <swimlanes name="PutSummary" orientation="VERTICAL">
+    <elements href="assembly.xml#PutSummary"/>
+    <elements href="assembly.xml#StoreHTMLLog"/>
+  </swimlanes>
+  <swimlanes x="349" y="467" name="Post Error and Success Log" description="This Sub-Assembly will be posting the cloud log and the zipped audit log file after all the processing is complete." alignment="MIDDLE" labelAlignment="LEFT">
+    <elements href="assembly.xml#PostErrorAndSuccessLog"/>
+    <elements href="assembly.xml#Route1"/>
+    <elements href="#//@swimlanes.10"/>
+    <elements href="assembly.xml#PutErrorDetails"/>
+    <elements href="assembly.xml#PutErrorReport"/>
+  </swimlanes>
+  <swimlanes x="492" y="407" name="global-error-handler" description="This sub-assembly will be used to handle any unhandled error." labelAlignment="LEFT">
+    <elements href="assembly.xml#//@beans/@mixed.1/@mixed.63"/>
+    <elements href="assembly.xml#Note-Error"/>
+  </swimlanes>
+  <swimlanes x="66" y="407" name="Call Custom Report For Validation">
+    <elements href="assembly.xml#GetEmpDataIn"/>
+    <elements href="#//@swimlanes.16"/>
+    <elements href="assembly.xml#WorkdayOutRest"/>
+    <elements href="assembly.xml#SplitReport"/>
+    <elements href="#//@swimlanes.17"/>
+  </swimlanes>
+  <swimlanes x="1506" y="725" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation1"/>
+    <elements href="assembly.xml#Errors0"/>
+  </swimlanes>
+  <swimlanes x="338" y="113" name="Initialization Step" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation"/>
+    <elements href="assembly.xml#PutIntegrationMessage02"/>
+  </swimlanes>
+  <swimlanes x="184" y="436" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#CatchReportError"/>
+    <elements href="assembly.xml#PutIntegrationMessage03"/>
+  </swimlanes>
+  <swimlanes x="680" y="445" name="Hash Map Declearations">
+    <elements href="assembly.xml#InserttoHash"/>
+    <elements href="assembly.xml#PutIntegrationMessage04"/>
+  </swimlanes>
+  <swimlanes x="937" y="779" name="Group By Company and Ignoring Rebate &amp; FX_FEE Activity Type from Input" orientation="VERTICAL">
+    <elements href="assembly.xml#GroupbyCompantoBase64"/>
+    <elements href="assembly.xml#PutIntegrationMessage05"/>
+  </swimlanes>
+  <swimlanes x="1900" y="780" name="Bas64 Encoding" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation10"/>
+    <elements href="assembly.xml#Errors2"/>
+  </swimlanes>
+  <swimlanes x="2390" y="812" name="Web Service Wizard" orientation="VERTICAL">
+    <elements href="assembly.xml#BuildWebServiceRequest"/>
+    <elements href="assembly.xml#Errors"/>
+  </swimlanes>
+  <swimlanes x="305" y="1362" name="Cloud_Log" orientation="VERTICAL">
+    <elements href="assembly.xml#Processing_output_Error"/>
+  </swimlanes>
+  <swimlanes x="326" y="78" bgColor="16777215" fgColor="12632256" name="WEB SERVICE CALL">
+    <elements href="assembly.xml#Submit_Supplier_Invoice_WS"/>
+    <elements href="assembly.xml#Success_Records_SPI"/>
+  </swimlanes>
+  <swimlanes x="63" y="1176" name="Swimlane">
+    <elements href="assembly.xml#GetFileEmpDataIn"/>
+    <elements href="assembly.xml#Splitter0"/>
+    <elements href="#//@swimlanes.24"/>
+    <elements href="assembly.xml#Aggregator"/>
+  </swimlanes>
+  <swimlanes x="583" y="1277" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AddEmployeeType"/>
+    <elements href="assembly.xml#PutIntegrationMessage00"/>
+  </swimlanes>
+  <swimlanes x="75" y="779" name="Web Service Creation in Validation Mode">
+    <elements href="assembly.xml#InProcessFile0"/>
+    <elements href="assembly.xml#Route2"/>
+    <elements href="assembly.xml#AsyncMediation70"/>
+    <elements href="#//@swimlanes.26"/>
+    <elements href="assembly.xml#CallGetEmpData0"/>
+    <elements href="#//@swimlanes.36"/>
+    <elements href="#//@swimlanes.27"/>
+    <elements href="assembly.xml#Splitter1"/>
+    <elements href="#//@swimlanes.28"/>
+    <elements href="#//@swimlanes.37"/>
+    <elements href="#//@swimlanes.30"/>
+    <elements href="#//@swimlanes.31"/>
+    <elements href="assembly.xml#Submit_Supplier_Invoice_WS0"/>
+  </swimlanes>
+  <swimlanes x="670" y="978" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation00"/>
+    <elements href="assembly.xml#PutIntegrationMessage01"/>
+  </swimlanes>
+  <swimlanes x="1611" y="915" name="Group By Company and Ignoring Rebate &amp; FX_FEE Activity Type from Validation Mode Input " orientation="VERTICAL">
+    <elements href="assembly.xml#GroupbyCompantoBase640"/>
+    <elements href="assembly.xml#PutIntegrationMessage050"/>
+  </swimlanes>
+  <swimlanes x="2134" y="858" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation11"/>
+    <elements href="assembly.xml#Errors00"/>
+  </swimlanes>
+  <swimlanes x="3001" y="843" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation100"/>
+    <elements href="assembly.xml#Errors20"/>
+  </swimlanes>
+  <swimlanes x="3233" y="876" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#Group_By_Company0"/>
+    <elements href="assembly.xml#Errors10"/>
+  </swimlanes>
+  <swimlanes x="3489" y="899" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#BuildWebServiceRequest0"/>
+    <elements href="assembly.xml#Errors3"/>
+  </swimlanes>
+  <swimlanes x="42" y="1911" name="Swimlane">
+    <elements href="assembly.xml#ZipLogFileCreate0"/>
+    <elements href="assembly.xml#AsyncMediation20"/>
+    <elements href="assembly.xml#Aggregator00"/>
+    <elements href="assembly.xml#StoreLog0"/>
+  </swimlanes>
+  <swimlanes x="1532" y="1303" name="Group By Company from Input Data for Invoice Attachment Purpose" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation4"/>
+    <elements href="assembly.xml#PutIntegrationMessage3"/>
+  </swimlanes>
+  <swimlanes x="3257" y="1303" name="Input File Attachment in Invoice">
+    <elements href="assembly.xml#Splitter2"/>
+    <elements href="#//@swimlanes.35"/>
+    <elements href="assembly.xml#CallZipLogFileCreate101"/>
+    <elements href="#//@swimlanes.19"/>
+  </swimlanes>
+  <swimlanes x="3406" y="1293" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation3"/>
+    <elements href="assembly.xml#Errors01"/>
+  </swimlanes>
+  <swimlanes x="1637" y="885" name="Group By Company from Input Data for Invoice Attachment Purpose Check in Validation Mode" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation40"/>
+    <elements href="assembly.xml#PutIntegrationMessage4"/>
+  </swimlanes>
+  <swimlanes x="3151" y="886" name="Input File Attachment Check in Validation Mode">
+    <elements href="assembly.xml#Splitter20"/>
+    <elements href="#//@swimlanes.38"/>
+    <elements href="assembly.xml#CallZipLogFileCreate1010"/>
+    <elements href="#//@swimlanes.29"/>
+  </swimlanes>
+  <swimlanes x="3706" y="902" name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation5"/>
+    <elements href="assembly.xml#Errors010"/>
+  </swimlanes>
+</wdnm:Diagram>
