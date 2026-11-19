@@ -43,6 +43,9 @@
   <visualProperties x="1358" y="514">
     <element href="assembly.xml#PutIntegrationMessage1"/>
   </visualProperties>
+  <visualProperties x="1004" y="97">
+    <element href="assembly.xml#AsyncMediation4"/>
+  </visualProperties>
   <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.25" targetAnchorX="0.23148148148148148" targetAnchorY="0.43243243243243246">
     <source href="assembly.xml#AsyncMediation"/>
     <target href="assembly.xml#mailto"/>

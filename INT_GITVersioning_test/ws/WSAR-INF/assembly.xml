@@ -149,6 +149,15 @@ www.vertexinc.com </cc:text>
         <cc:local-out id="PutIntegrationMessage" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
         <cc:local-out id="PutIntegrationMessage0" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
         <cc:local-out id="PutIntegrationMessage1" endpoint="vm://wcc/PutIntegrationMessage"><cc:set name="is.message.severity" value="'ERROR'"/><cc:set name="is.message.summary" value="context.errorMessage"/></cc:local-out>
+        <cc:async-mediation id="AsyncMediation4">
+            <cc:steps>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:message-content/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+        </cc:async-mediation>
 	</cc:assembly>
 
 </beans>
